@@ -61,6 +61,7 @@ class Login extends React.Component<{
     .then(res => res.json())
     .then(json => {
       console.log(json);
+      console.log(json.user.id)
       this.props.updateToken(json.sessionToken);
       this.props.setSessionToken(json.sessionToken)
       this.setState({
