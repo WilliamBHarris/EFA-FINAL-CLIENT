@@ -10,8 +10,8 @@ import Badge from "@material-ui/core/Badge";
 import Drawer from "@material-ui/core/Drawer";
 import Cart from "./components/Cart/Cart";
 import Products from "./components/Products/Products";
-import Reviews from "./components/Reviews/Reviews";
-
+// import Reviews from "./components/Reviews/Reviews";
+import SingleProduct from "./components/Products/SingleProduct";
 
 export type CartItemType = {
   id: number;
@@ -22,18 +22,24 @@ export type CartItemType = {
   title: string;
   amount: number;
 };
+export type ReviewType = {
+  id: number;
+  description: string;
+  title: string;
+};
 
 export type SetSessionToken = {
   setSessionToken: (sessionToken: string) => void;
 };
 
-export type AppProps = {
+export type MainProps = {
   isLoggedIn: boolean;
   sessionToken: string | null;
   clearToken: () => void;
   updateToken: (newToken: string) => void;
   setSessionToken: (sessionToken: string | null) => void;
   getProducts: () => Promise<void>;
+  fetchProducts: () => Promise<void>;
 };
 
 const App = () => {
@@ -42,39 +48,22 @@ const App = () => {
   const [cartOpen, setCartOpen] = useState(false);
   const [item, setItem] = useState([] as CartItemType[]);
   const [cartItems, setCartItems] = useState([] as CartItemType[]);
-
-  // !! THIS NEEDS TO BE THE FETCH FOR REVIEWS. 
-
-  // const fetchReviews = async (): Promise<void> => {
-  //   await fetch(`http://localhost:3000/products/`, {
-  //     method: "GET",
-  //     headers: new Headers({
-  //       "Content-Type": "application/json",
-  //       Authorization: `Bearer ${localStorage.getItem("token")}`,
-  //     }),
-  //   })
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       setItem(data);
-  //       console.log(item);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
+  const [reviewId, setReviewId] = useState('')
+  const [reviewTotal, setReviewTotal] = useState(0)
+  
 
   const fetchProducts = async (): Promise<void> => {
     await fetch(`http://localhost:3000/products/`, {
       method: "GET",
       headers: new Headers({
         "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        Authorization: `Bearer ${localStorage.getItem("Authorization")}`,
       }),
     })
       .then((res) => res.json())
       .then((data) => {
+        console.log(data)
         setItem(data);
-        console.log(item);
       })
       .catch((err) => {
         console.log(err);
@@ -83,10 +72,11 @@ const App = () => {
 
   useEffect(() => {
     fetchProducts();
-  }, []);
+    reviewIdLog();
+  }, [reviewId]);
 
   const updateToken = (newToken: string) => {
-    localStorage.setItem("token", newToken);
+    localStorage.setItem("Authorization", newToken);
     setSessionToken(newToken);
   };
 
@@ -128,6 +118,24 @@ const App = () => {
   const getTotalItems = (items: CartItemType[]) =>
     items.reduce((ack: number, item) => ack + item.amount, 0);
 
+    const reviewIdLog = () => {
+      if(reviewId !== ''){
+      return deleteRev();
+    }}
+
+    const deleteRev = async (): Promise<void> => {
+      await fetch(`http://localhost:3000/review/${reviewId}`, {
+        method: "DELETE",
+        headers: new Headers({
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("Authorization")}`,
+        }),
+      })
+    };
+
+    
+    
+
   return (
     <>
       <Router>
@@ -159,10 +167,7 @@ const App = () => {
           <Route
             path="/products"
             element={
-              <Products
-                handleAddToCart={handleAddToCart}
-                item={item.sort()}
-              />
+              <Products   handleAddToCart={handleAddToCart} item={item.sort()} />
             }
           />
           <Route
@@ -185,16 +190,12 @@ const App = () => {
               />
             }
           />
-              <Route
-            path="/reviews"
-            element={
-              <Reviews
-              item={item.sort()}
-              />
-            }
+     
+          <Route
+            path="/products/:id"
+            element={<SingleProduct setReviewTotal={setReviewTotal} reviewId={reviewId} setReviewId={setReviewId} sessionToken={sessionToken} setSessionToken={setSessionToken} />}
           />
         </Routes>
-
       </Router>
     </>
   );

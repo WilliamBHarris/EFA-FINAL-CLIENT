@@ -1,5 +1,5 @@
 import React from "react";
-import { AppProps } from "../../App";
+import { MainProps } from "../../App";
 import { Navigate } from "react-router-dom";
 
 export type Props = {
@@ -10,16 +10,16 @@ export type Props = {
   email: string;
   user: string;
   passwordhash: string;
-  sessionToken: AppProps["sessionToken"];
-  updateToken: AppProps["updateToken"];
-  setSessionToken: AppProps["setSessionToken"];
+  sessionToken: MainProps["sessionToken"];
+  updateToken: MainProps["updateToken"];
+  setSessionToken: MainProps["setSessionToken"];
 };
 
 class Register extends React.Component<
   {
-    sessionToken: AppProps["sessionToken"];
-    updateToken: AppProps["updateToken"];
-    setSessionToken: AppProps["setSessionToken"];
+    sessionToken: MainProps["sessionToken"];
+    updateToken: MainProps["updateToken"];
+    setSessionToken: MainProps["setSessionToken"];
   },
   Props
 > {

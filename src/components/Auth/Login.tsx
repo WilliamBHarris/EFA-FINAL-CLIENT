@@ -1,6 +1,6 @@
 import React from 'react';
 import { Navigate} from 'react-router-dom';
-import { AppProps} from '../../App';
+import { MainProps} from '../../App';
 
 
 
@@ -9,15 +9,15 @@ export type LoginProps = {
   email: string,
   passwordhash: string,
   user: string,
-  sessionToken: AppProps['sessionToken']
-  updateToken: AppProps['updateToken']
-  setSessionToken: AppProps['setSessionToken']
+  sessionToken: MainProps['sessionToken']
+  updateToken: MainProps['updateToken']
+  setSessionToken: MainProps['setSessionToken']
 }
 
 class Login extends React.Component<{
-  sessionToken: AppProps['sessionToken'], 
-  updateToken: AppProps['updateToken'], 
-  setSessionToken: AppProps['setSessionToken']
+  sessionToken: MainProps['sessionToken'], 
+  updateToken: MainProps['updateToken'], 
+  setSessionToken: MainProps['setSessionToken']
 }, LoginProps> {
   constructor(props: LoginProps) {
     super(props)

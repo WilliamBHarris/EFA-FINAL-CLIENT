@@ -1,20 +1,20 @@
 import React from "react";
-import { AppProps } from "../../App";
+import { MainProps } from "../../App";
 import { Link } from "react-router-dom";
 
 export type NavbarProps = {
-  isLoggedIn: AppProps["isLoggedIn"];
-  sessionToken: AppProps["sessionToken"];
-  clearToken: AppProps["clearToken"];
-  setSessionToken: AppProps["setSessionToken"];
+  isLoggedIn: MainProps["isLoggedIn"];
+  sessionToken: MainProps["sessionToken"];
+  clearToken: MainProps["clearToken"];
+  setSessionToken: MainProps["setSessionToken"];
 };
 
 class Navbar extends React.Component<
   {
-    isLoggedIn: AppProps["isLoggedIn"];
-    sessionToken: AppProps["sessionToken"];
-    clearToken: AppProps["clearToken"];
-    setSessionToken: AppProps["setSessionToken"];
+    isLoggedIn: MainProps["isLoggedIn"];
+    sessionToken: MainProps["sessionToken"];
+    clearToken: MainProps["clearToken"];
+    setSessionToken: MainProps["setSessionToken"];
   },
   NavbarProps
 > {

@@ -19,7 +19,7 @@ class Item extends React.Component<ItemProps> {
           <h1>{this.props.item.amount}</h1>
           <h1>{this.props.item.price}</h1>
           <button onClick={() => this.props.handleAddToCart(this.props.item)}>Add to cart</button>
-          <Link to="/reviews"><p>Reviews</p></Link>
+          <Link to={`/products/${this.props.item.id}`}>Reviews</Link>
           </div>
       </div>
     );

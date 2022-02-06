@@ -9,7 +9,7 @@ export type ProductProps = {
 };
 
 class Products extends React.Component< ProductProps> {
-  render(): React.ReactNode {
+  render(): React.ReactNode {    
     return (
       <Grid container spacing={3}>
         {this.props.item?.map((item) => (
