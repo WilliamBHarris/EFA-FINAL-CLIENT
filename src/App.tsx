@@ -10,7 +10,7 @@ import Badge from "@material-ui/core/Badge";
 import Drawer from "@material-ui/core/Drawer";
 import Cart from "./components/Cart/Cart";
 import Products from "./components/Products/Products";
-// import Reviews from "./components/Reviews/Reviews";
+// import ReviewUpdate from "./components/Reviews/ReviewUpdate";
 import SingleProduct from "./components/Products/SingleProduct";
 
 export type CartItemType = {
@@ -48,9 +48,9 @@ const App = () => {
   const [cartOpen, setCartOpen] = useState(false);
   const [item, setItem] = useState([] as CartItemType[]);
   const [cartItems, setCartItems] = useState([] as CartItemType[]);
-  const [reviewId, setReviewId] = useState('')
-  const [reviewTotal, setReviewTotal] = useState(0)
-  
+  const [reviewId, setReviewId] = useState("");
+  const [reviewTotal, setReviewTotal] = useState(0);
+  const [open, setOpen] = useState(false);
 
   const fetchProducts = async (): Promise<void> => {
     await fetch(`http://localhost:3000/products/`, {
@@ -62,7 +62,7 @@ const App = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data)
+        console.log(data);
         setItem(data);
       })
       .catch((err) => {
@@ -118,23 +118,29 @@ const App = () => {
   const getTotalItems = (items: CartItemType[]) =>
     items.reduce((ack: number, item) => ack + item.amount, 0);
 
-    const reviewIdLog = () => {
-      if(reviewId !== ''){
+  const reviewIdLog = () => {
+    if (reviewId !== "") {
       return deleteRev();
-    }}
+    }
+  };
 
-    const deleteRev = async (): Promise<void> => {
-      await fetch(`http://localhost:3000/review/${reviewId}`, {
-        method: "DELETE",
-        headers: new Headers({
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("Authorization")}`,
-        }),
-      })
-    };
+  const deleteRev = async (): Promise<void> => {
+    await fetch(`http://localhost:3000/review/${reviewId}`, {
+      method: "DELETE",
+      headers: new Headers({
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("Authorization")}`,
+      }),
+    });
+  };
 
-    
-    
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   return (
     <>
@@ -167,9 +173,10 @@ const App = () => {
           <Route
             path="/products"
             element={
-              <Products   handleAddToCart={handleAddToCart} item={item.sort()} />
+              <Products handleAddToCart={handleAddToCart} item={item.sort()} />
             }
           />
+          {/* <Route path="/reviewupdate" element={<ReviewUpdate />} /> */}
           <Route
             path="/register"
             element={
@@ -190,10 +197,22 @@ const App = () => {
               />
             }
           />
-     
+
           <Route
             path="/products/:id"
-            element={<SingleProduct setReviewTotal={setReviewTotal} reviewId={reviewId} setReviewId={setReviewId} sessionToken={sessionToken} setSessionToken={setSessionToken} />}
+            element={
+              <SingleProduct
+                setReviewTotal={setReviewTotal}
+                reviewId={reviewId}
+                setReviewId={setReviewId}
+                sessionToken={sessionToken}
+                setSessionToken={setSessionToken}
+                handleClose={handleClose}
+                handleClickOpen={handleClickOpen}
+                setOpen={setOpen}
+                open={open}
+              />
+            }
           />
         </Routes>
       </Router>
