@@ -51,7 +51,7 @@ const App = () => {
   const [reviewId, setReviewId] = useState("");
   const [reviewTotal, setReviewTotal] = useState(0);
   const [open, setOpen] = useState(false);
-
+  const [revId, setRevId] = useState('');
   const fetchProducts = async (): Promise<void> => {
     await fetch(`http://localhost:3000/products/`, {
       method: "GET",
@@ -119,8 +119,9 @@ const App = () => {
     items.reduce((ack: number, item) => ack + item.amount, 0);
 
   const reviewIdLog = () => {
-    if (reviewId !== "") {
-      return deleteRev();
+    if (reviewId !== '') {
+      return (
+      deleteRev())
     }
   };
 
@@ -202,6 +203,7 @@ const App = () => {
             path="/products/:id"
             element={
               <SingleProduct
+                fetchProducts={fetchProducts}
                 setReviewTotal={setReviewTotal}
                 reviewId={reviewId}
                 setReviewId={setReviewId}
@@ -211,6 +213,8 @@ const App = () => {
                 handleClickOpen={handleClickOpen}
                 setOpen={setOpen}
                 open={open}
+                setRevId={setRevId}
+                revId={revId}
               />
             }
           />

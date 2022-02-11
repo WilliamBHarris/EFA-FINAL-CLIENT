@@ -14,7 +14,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 export type UpdateProp = {
   title: string;
   description: string;
-  clear: boolean;
+  cancelClear: boolean;
 };
 
 export type ReviewUpdateProps = {
@@ -25,6 +25,9 @@ export type ReviewUpdateProps = {
   handleClickOpen: any;
   setOpen: any;
   open: any;
+  setRevId: any;
+  revId: any;
+  theId: string;
 };
 
 class ReviewUpdate extends React.Component<ReviewUpdateProps, UpdateProp> {
@@ -34,19 +37,54 @@ class ReviewUpdate extends React.Component<ReviewUpdateProps, UpdateProp> {
     this.state = {
       title: this.props.title,
       description: this.props.description,
-      clear: false,
+      cancelClear: false,
     };
-    this.clear = this.clear.bind(this);
+    this.cancelClear = this.cancelClear.bind(this);
+    this.handleUpdate = this.handleUpdate.bind(this);
   }
 
-  clear = () => {
-    this.setState({
-      title: this.props.title,
-      description: this.props.description,
-    });
+  cancelClear = () => {
+    // this.setState({
+    //   title: this.state.title,
+    //   description: this.state.description,
+    // });
     this.props.handleClose();
-    console.log(this.props.reviewId);
+    this.props.setRevId(this.props.revId);
   };
+
+  handleUpdate =  () => {
+      if(this.props.revId !== ''){
+          this.props.setRevId(this.props.revId)
+      }
+      console.log(this.props.revId)
+      console.log(this.state.title)
+      console.log(this.state.description)
+     fetch(`http://localhost:3000/review/${this.props.revId}`, {
+        method: 'PUT',
+        body: JSON.stringify({
+          review: {
+            title: this.state.title,
+            description: this.state.description
+          }
+        }),
+        headers: new Headers({
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${localStorage.getItem("Authorization")}`
+        })
+      })
+      .then(res => {
+        console.log(res)
+        this.props.setRevId('')
+            this.setState({
+                description: this.state.description,
+                title: this.state.title
+            })
+           
+          this.props.handleClose()
+        
+      })
+      .catch(error => console.log(error))
+  }
 
   render(): React.ReactNode {
     return (
@@ -84,8 +122,8 @@ class ReviewUpdate extends React.Component<ReviewUpdateProps, UpdateProp> {
             />
           </DialogContent>
           <DialogActions>
-            <Button onClick={this.clear}>Cancel</Button>
-            <Button onClick={this.props.handleClose}>Update</Button>
+            <Button onClick={this.cancelClear}>Cancel</Button>
+            <Button onClick={this.handleUpdate}>Update</Button>
           </DialogActions>
         </Dialog>
       </div>

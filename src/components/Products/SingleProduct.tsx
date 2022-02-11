@@ -29,6 +29,9 @@ export type TokenProp = {
   handleClickOpen: any;
   setOpen: any;
   open: any;
+  setRevId: any;
+  revId: any;
+  fetchProducts: any;
 };
 
 class SingleProduct extends React.Component<
@@ -81,14 +84,14 @@ TokenProp,
     this.fetchProducts();
   }
 
-  componentDidUpdate() {
-    if (this.state.title !== "" || this.props.reviewId !== "")
-      this.fetchProducts();
-  }
+  // componentDidUpdate() {
+  //   if (this.props.revId !== "")
+  //     this.fetchProducts();
+  // }
 
-  componentWillUnmount() {
-    this.fetchProducts();
-  }
+  // componentWillUnmount() {
+  //   this.fetchProducts();
+  // }
 
   addReview = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -165,6 +168,9 @@ TokenProp,
             handleClickOpen={this.props.handleClickOpen}
             setOpen={this.props.setOpen}
             open={this.props.open}
+            setRevId={this.props.setRevId}
+            revId={this.props.revId}
+            fetchProducts={this.props.fetchProducts}
           />
         </div>
       </div>
