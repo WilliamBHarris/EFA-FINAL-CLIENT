@@ -9,6 +9,7 @@ export type ProductState = {
   description: string;
   image: string;
   price: number;
+  userId: string;
   amount: number;
   category: string;
   id: string;
@@ -32,7 +33,6 @@ export type TokenProp = {
   setRevId: any;
   revId: any;
   fetchProducts: any;
-  userId: string;
 };
 
 class SingleProduct extends React.Component<TokenProp, ProductState> {
@@ -45,6 +45,7 @@ class SingleProduct extends React.Component<TokenProp, ProductState> {
       title: "",
       description: "",
       prodDescription: "",
+      userId: "",
       price: 0,
       amount: 0,
       category: "",
@@ -65,10 +66,12 @@ class SingleProduct extends React.Component<TokenProp, ProductState> {
     })
       .then((res) => res.json())
       .then((res) => {
+        console.log(res)
         this.setState({
           prodTitle: res.title,
           image: res.image,
           prodDescription: res.description,
+          userId: res.userId,
           reviews: [...res.reviews],
           userName: `${res.user.firstName} ${res.user.lastName}`,
         });
@@ -77,6 +80,7 @@ class SingleProduct extends React.Component<TokenProp, ProductState> {
   };
 
   componentDidMount() {
+
     this.fetchProducts();
   }
 
@@ -109,12 +113,11 @@ class SingleProduct extends React.Component<TokenProp, ProductState> {
         console.log(res)
         this.props.setRevId("add");
       })
-      .then((res) => {
+      .then(() => {
         this.props.setRevId('')
         this.setState({
           title: "",
           description: "",
-          // userId: res.user.id
         });
       })
       .then(() => {
@@ -161,6 +164,7 @@ class SingleProduct extends React.Component<TokenProp, ProductState> {
           <SingleReviews
             setReviewId={this.props.setReviewId}
             reviewId={this.props.reviewId}
+            userId={this.state.userId}
             userName={this.state.userName}
             reviews={this.state.reviews}
             handleClose={this.props.handleClose}
@@ -170,7 +174,6 @@ class SingleProduct extends React.Component<TokenProp, ProductState> {
             setRevId={this.props.setRevId}
             revId={this.props.revId}
             fetchProducts={this.props.fetchProducts}
-            userId={this.props.userId}
           />
         </div>
       </div>
