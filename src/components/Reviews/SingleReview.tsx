@@ -115,7 +115,7 @@ class SingleReviews extends React.Component<SingleReviewProps, ReviewState> {
             <h3>{reviews.title}</h3>
             <p>{reviews.description}</p>
           </div>
-          {reviews.userId === this.props.userId ? (
+          {reviews.userId === reviews.user.userId ? (
             <>
           <button onClick={() => {this.props.setRevId("delete")
         this.props.setReviewId(reviews.id)}}>
