@@ -78,33 +78,6 @@ const App = () => {
     updateReview();
   }, [reviewId, revId]);
 
-  useEffect(() => {
-    if (localStorage.getItem('Authorization'))
-    setSessionToken(localStorage.getItem('Authorization')); 
-
-      const fetchUser = async ():Promise<void> => {
-          await fetch(`${dbCall}/user/checkToken`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: `Bearer ${sessionToken}`
-            }
-          })
-          .then(res => {
-            console.log('user fetch')
-            return res.json()
-          })
-          .then((res) => {
-            setUserId(res.userId)
-          })
-  
-          .catch(error => console.log(error))
-      }
-
-      fetchUser()
-
-  }, [])
-
   const updateToken = (newToken: string) => {
     localStorage.setItem("Authorization", newToken);
     setSessionToken(newToken);
