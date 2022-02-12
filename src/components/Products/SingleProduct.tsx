@@ -34,10 +34,7 @@ export type TokenProp = {
   fetchProducts: any;
 };
 
-class SingleProduct extends React.Component<
-TokenProp,
-  ProductState
-> {
+class SingleProduct extends React.Component<TokenProp, ProductState> {
   constructor(props: any) {
     super(props);
 
@@ -84,14 +81,14 @@ TokenProp,
     this.fetchProducts();
   }
 
-  // componentDidUpdate() {
-  //   if (this.props.revId !== "")
-  //     this.fetchProducts();
-  // }
+  componentDidUpdate() {
+    if (this.props.revId === "add" || this.props.revId === "update" || this.props.revId === 'delete')
+      this.fetchProducts();
+  }
 
-  // componentWillUnmount() {
-  //   this.fetchProducts();
-  // }
+  componentWillUnmount() {
+    this.fetchProducts();
+  }
 
   addReview = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -109,16 +106,19 @@ TokenProp,
         Authorization: `Bearer ${localStorage.getItem("Authorization")}`,
       },
     })
-      .then((res) => res.json())
-      .then((json) => {
-        console.log(json);
-        this.props.setSessionToken(json.sessionToken);
+      .then((res) => {
+        console.log(res)
+        this.props.setRevId("add");
       })
       .then(() => {
+        this.props.setRevId('')
         this.setState({
           title: "",
           description: "",
         });
+      })
+      .then(() => {
+        this.props.setRevId('')
       })
       .catch((error) => console.log(error));
   };

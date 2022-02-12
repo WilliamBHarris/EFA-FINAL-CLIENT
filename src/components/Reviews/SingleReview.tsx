@@ -76,8 +76,12 @@ class SingleReviews extends React.Component<SingleReviewProps, ReviewState> {
           description: this.state.description,
           title: this.state.title,
         });
+        this.props.setRevId('update')
         this.props.fetchProducts();
         this.handleClose();
+      })
+      .then(() => {
+        this.props.setRevId('')
       })
       .catch((error) => console.log(error));
   };
@@ -94,6 +98,9 @@ class SingleReviews extends React.Component<SingleReviewProps, ReviewState> {
     });
   };
 
+
+
+
   mapReviews = () => {
     return this.props.reviews.map((reviews: any): JSX.Element => {
       
@@ -109,7 +116,8 @@ class SingleReviews extends React.Component<SingleReviewProps, ReviewState> {
           </div>
           {reviews.userId === this.props.userId ? (
             <>
-              <button onClick={() => this.props.setReviewId(reviews.id)}>
+          <button onClick={() => {this.props.setRevId("delete")
+        this.props.setReviewId(reviews.id)}}>
                 Delete
               </button>
               
@@ -161,6 +169,7 @@ class SingleReviews extends React.Component<SingleReviewProps, ReviewState> {
       );
     });
   };
+  
   render(): React.ReactNode {
     return (
       <div>

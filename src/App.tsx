@@ -52,6 +52,7 @@ const App = () => {
   const [reviewTotal, setReviewTotal] = useState(0);
   const [open, setOpen] = useState(false);
   const [revId, setRevId] = useState('');
+
   const fetchProducts = async (): Promise<void> => {
     await fetch(`http://localhost:3000/products/`, {
       method: "GET",
@@ -73,7 +74,8 @@ const App = () => {
   useEffect(() => {
     fetchProducts();
     reviewIdLog();
-  }, [reviewId]);
+    updateReview();
+  }, [reviewId, revId]);
 
   const updateToken = (newToken: string) => {
     localStorage.setItem("Authorization", newToken);
@@ -119,11 +121,19 @@ const App = () => {
     items.reduce((ack: number, item) => ack + item.amount, 0);
 
   const reviewIdLog = () => {
-    if (reviewId !== '') {
+    if (revId === 'delete') {
       return (
       deleteRev())
     }
   };
+
+  const updateReview = () => {
+    if (revId === 'update' || revId === 'add'){
+      return (
+        fetchProducts()
+      )
+    } 
+  }
 
   const deleteRev = async (): Promise<void> => {
     await fetch(`http://localhost:3000/review/${reviewId}`, {
@@ -132,7 +142,11 @@ const App = () => {
         "Content-Type": "application/json",
         Authorization: `Bearer ${localStorage.getItem("Authorization")}`,
       }),
-    });
+      
+    }).then((res)=>{
+        setReviewId('')
+        setRevId('')
+      });
   };
 
   const handleClickOpen = () => {
