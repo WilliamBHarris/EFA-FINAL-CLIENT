@@ -1,5 +1,6 @@
 import React from "react";
 import { MainProps } from "../../App";
+import dbCall from "../../helpers/environment";
 import { Navigate } from "react-router-dom";
 
 export type Props = {
@@ -50,7 +51,7 @@ class Register extends React.Component<
   registerUser = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    await fetch(`http://localhost:3000/user/register`, {
+    await fetch(`${dbCall}/user/register`, {
       method: "POST",
       body: JSON.stringify({
         user: {

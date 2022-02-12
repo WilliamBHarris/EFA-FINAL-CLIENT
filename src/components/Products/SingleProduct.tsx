@@ -1,6 +1,7 @@
 import React from "react";
 import SingleReviews from "../Reviews/SingleReview";
 import { MainProps } from "../../App";
+import dbCall from "../../helpers/environment";
 
 export type ProductState = {
   productId: string;
@@ -57,7 +58,7 @@ class SingleProduct extends React.Component<TokenProp, ProductState> {
   }
 
   fetchProducts = async (): Promise<void> => {
-    await fetch(`http://localhost:3000/products/${this.state.productId}`, {
+    await fetch(`${dbCall}/products/${this.state.productId}`, {
       method: "GET",
       headers: new Headers({
         "Content-Type": "application/json",
@@ -93,7 +94,7 @@ class SingleProduct extends React.Component<TokenProp, ProductState> {
   addReview = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    await fetch(`http://localhost:3000/review/${this.state.productId}`, {
+    await fetch(`${dbCall}/review/${this.state.productId}`, {
       method: "POST",
       body: JSON.stringify({
         review: {

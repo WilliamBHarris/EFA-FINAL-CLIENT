@@ -6,8 +6,8 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
+import dbCall from "../../helpers/environment";
 
-/* YOU ARE TRYING TO FIGURE OUT WHY THE THIS.PROPS.TITLE IS JUST PASSING THE SAME ITEM ON ALL THE EDITS. */
 
 
 
@@ -44,10 +44,6 @@ class ReviewUpdate extends React.Component<ReviewUpdateProps, UpdateProp> {
   }
 
   cancelClear = () => {
-    // this.setState({
-    //   title: this.state.title,
-    //   description: this.state.description,
-    // });
     this.props.handleClose();
     this.props.setRevId(this.props.revId);
   };
@@ -59,7 +55,7 @@ class ReviewUpdate extends React.Component<ReviewUpdateProps, UpdateProp> {
       console.log(this.props.revId)
       console.log(this.state.title)
       console.log(this.state.description)
-     fetch(`http://localhost:3000/review/${this.props.revId}`, {
+     fetch(`${dbCall}/review/${this.props.revId}`, {
         method: 'PUT',
         body: JSON.stringify({
           review: {

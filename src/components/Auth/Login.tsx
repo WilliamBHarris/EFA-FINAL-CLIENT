@@ -1,6 +1,7 @@
 import React from 'react';
 import { Navigate} from 'react-router-dom';
 import { MainProps} from '../../App';
+import dbCall from '../../helpers/environment';
 
 
 
@@ -46,7 +47,7 @@ class Login extends React.Component<{
   loginUser = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    await fetch(`http://localhost:3000/user/login`, {
+    await fetch(`${dbCall}/user/login`, {
       method: "POST",
       body: JSON.stringify({
         user: {

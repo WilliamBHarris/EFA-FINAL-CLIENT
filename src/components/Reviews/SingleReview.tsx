@@ -8,6 +8,7 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
+import dbCall from "../../helpers/environment";
 
 export type SingleReviewProps = {
   reviews: any;
@@ -56,7 +57,7 @@ class SingleReviews extends React.Component<SingleReviewProps, ReviewState> {
   };
 
   handleUpdate = () => {
-    fetch(`http://localhost:3000/review/${this.state.revId}`, {
+    fetch(`${dbCall}/review/${this.state.revId}`, {
       method: "PUT",
       body: JSON.stringify({
         review: {

@@ -12,6 +12,7 @@ import Cart from "./components/Cart/Cart";
 import Products from "./components/Products/Products";
 // import ReviewUpdate from "./components/Reviews/ReviewUpdate";
 import SingleProduct from "./components/Products/SingleProduct";
+import dbCall from "./helpers/environment";
 
 export type CartItemType = {
   id: number;
@@ -54,7 +55,7 @@ const App = () => {
   const [revId, setRevId] = useState('');
 
   const fetchProducts = async (): Promise<void> => {
-    await fetch(`http://localhost:3000/products/`, {
+    await fetch(`${dbCall}/products/`, {
       method: "GET",
       headers: new Headers({
         "Content-Type": "application/json",
@@ -136,7 +137,7 @@ const App = () => {
   }
 
   const deleteRev = async (): Promise<void> => {
-    await fetch(`http://localhost:3000/review/${reviewId}`, {
+    await fetch(`${dbCall}/review/${reviewId}`, {
       method: "DELETE",
       headers: new Headers({
         "Content-Type": "application/json",
