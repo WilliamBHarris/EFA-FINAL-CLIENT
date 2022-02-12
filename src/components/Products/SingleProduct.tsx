@@ -111,11 +111,12 @@ class SingleProduct extends React.Component<TokenProp, ProductState> {
         console.log(res)
         this.props.setRevId("add");
       })
-      .then(() => {
+      .then((res) => {
         this.props.setRevId('')
         this.setState({
           title: "",
           description: "",
+          // userId: res.user.id
         });
       })
       .then(() => {
