@@ -114,6 +114,8 @@ class SingleReviews extends React.Component<SingleReviewProps, ReviewState> {
             </h5>
             <h3>{reviews.title}</h3>
             <p>{reviews.description}</p>
+            <p>Id: {this.props.userId}</p>
+            <p>revId: {reviews.userId}</p>
           </div>
           {reviews.userId !== this.props.userId ? (
             <>
