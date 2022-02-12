@@ -13,7 +13,6 @@ import dbCall from "../../helpers/environment";
 export type SingleReviewProps = {
   reviews: any;
   userName: any;
-  userId: any;
   reviewId: any;
   setReviewId: any;
   handleClose: any;
@@ -23,6 +22,7 @@ export type SingleReviewProps = {
   setRevId: any;
   revId: any;
   fetchProducts: any;
+  userId: string;
 };
 
 export type ReviewState = {
@@ -117,7 +117,7 @@ class SingleReviews extends React.Component<SingleReviewProps, ReviewState> {
             <p>Id: {this.props.userId}</p>
             <p>revId: {reviews.userId}</p>
           </div>
-          {reviews.userId !== this.props.userId ? (
+          {reviews.userId === this.props.userId ? (
             <>
           <button onClick={() => {this.props.setRevId("delete")
         this.props.setReviewId(reviews.id); console.log(reviews)}}>
