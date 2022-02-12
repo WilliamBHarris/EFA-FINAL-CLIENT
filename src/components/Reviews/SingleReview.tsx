@@ -41,7 +41,7 @@ class SingleReviews extends React.Component<SingleReviewProps, ReviewState> {
       title: "",
       description: "",
       open: false,
-      revId: ''
+      revId: "",
     };
     this.mapReviews = this.mapReviews.bind(this);
     this.cancelClear = this.cancelClear.bind(this);
@@ -77,12 +77,12 @@ class SingleReviews extends React.Component<SingleReviewProps, ReviewState> {
           description: this.state.description,
           title: this.state.title,
         });
-        this.props.setRevId('update')
+        this.props.setRevId("update");
         this.props.fetchProducts();
         this.handleClose();
       })
       .then(() => {
-        this.props.setRevId('')
+        this.props.setRevId("");
       })
       .catch((error) => console.log(error));
   };
@@ -93,18 +93,14 @@ class SingleReviews extends React.Component<SingleReviewProps, ReviewState> {
     });
   };
 
-   handleClose = () => {
+  handleClose = () => {
     this.setState({
       open: false,
     });
   };
 
-
-
-
   mapReviews = () => {
     return this.props.reviews.map((reviews: any): JSX.Element => {
-      
       return (
         <div className="reviewMain" key={reviews.id}>
           <div key={reviews.productId}>
@@ -119,51 +115,58 @@ class SingleReviews extends React.Component<SingleReviewProps, ReviewState> {
           </div>
           {reviews.userId === this.props.userId ? (
             <>
-          <button onClick={() => {this.props.setRevId("delete")
-        this.props.setReviewId(reviews.id); console.log(reviews)}}>
+              <button
+                onClick={() => {
+                  this.props.setRevId("delete");
+                  this.props.setReviewId(reviews.id);
+                  console.log(reviews);
+                }}
+              >
                 Delete
               </button>
-              
-                <Button variant="outlined" onClick={() => this.setState({open: true, revId: reviews.id})}>
-                  Edit
-                </Button>
-                <Dialog open={this.state.open} onClose={this.props.handleClose}>
-                  <DialogTitle>Update Review</DialogTitle>
-                  <DialogContent>
-                    <DialogContentText>
-                      Edit the contents of the review and update.
-                    </DialogContentText>
-                    <TextField
-                      autoFocus
-                      margin="dense"
-                      id="name"
-                      label="Title:"
-                      type="text"
-                      fullWidth
-                      variant="standard"
-                      value={this.state.title}
-                      onChange={(e) => this.setState({ title: e.target.value })}
-                    />
-                    <TextField
-                      autoFocus
-                      margin="dense"
-                      id="name"
-                      label="Description:"
-                      type="text"
-                      fullWidth
-                      variant="standard"
-                      value={this.state.description}
-                      onChange={(e) =>
-                        this.setState({ description: e.target.value })
-                      }
-                    />
-                  </DialogContent>
-                  <DialogActions>
-                    <Button onClick={this.cancelClear}>Cancel</Button>
-                    <Button onClick={this.handleUpdate}>Update</Button>
-                  </DialogActions>
-                </Dialog>
-            
+
+              <Button
+                variant="outlined"
+                onClick={() => this.setState({ open: true, revId: reviews.id })}
+              >
+                Edit
+              </Button>
+              <Dialog open={this.state.open} onClose={this.props.handleClose}>
+                <DialogTitle>Update Review</DialogTitle>
+                <DialogContent>
+                  <DialogContentText>
+                    Edit the contents of the review and update.
+                  </DialogContentText>
+                  <TextField
+                    autoFocus
+                    margin="dense"
+                    id="name"
+                    label="Title:"
+                    type="text"
+                    fullWidth
+                    variant="standard"
+                    value={this.state.title}
+                    onChange={(e) => this.setState({ title: e.target.value })}
+                  />
+                  <TextField
+                    autoFocus
+                    margin="dense"
+                    id="name"
+                    label="Description:"
+                    type="text"
+                    fullWidth
+                    variant="standard"
+                    value={this.state.description}
+                    onChange={(e) =>
+                      this.setState({ description: e.target.value })
+                    }
+                  />
+                </DialogContent>
+                <DialogActions>
+                  <Button onClick={this.cancelClear}>Cancel</Button>
+                  <Button onClick={this.handleUpdate}>Update</Button>
+                </DialogActions>
+              </Dialog>
             </>
           ) : (
             ""
@@ -172,7 +175,7 @@ class SingleReviews extends React.Component<SingleReviewProps, ReviewState> {
       );
     });
   };
-  
+
   render(): React.ReactNode {
     return (
       <div>

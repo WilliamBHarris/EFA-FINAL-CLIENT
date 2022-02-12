@@ -52,7 +52,6 @@ const App = () => {
   const [reviewTotal, setReviewTotal] = useState(0);
   const [open, setOpen] = useState(false);
   const [revId, setRevId] = useState('');
-  const [userId, setUserId] = useState('');
 
   const fetchProducts = async (): Promise<void> => {
     await fetch(`${dbCall}/products/`, {
@@ -230,7 +229,6 @@ const App = () => {
                 open={open}
                 setRevId={setRevId}
                 revId={revId}
-                userId={userId}
               />
             }
           />
