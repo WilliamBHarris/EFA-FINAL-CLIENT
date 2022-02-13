@@ -72,7 +72,7 @@ class SingleProduct extends React.Component<TokenProp, ProductState> {
           image: res.image,
           prodDescription: res.description,
           reviews: [...res.reviews],
-          userName: `${res.user.firstName} ${res.user.lastName}`,
+          userName: '',
         });
       })
       .catch((error) => console.log(error));
