@@ -52,6 +52,13 @@ const App = () => {
   const [reviewTotal, setReviewTotal] = useState(0);
   const [open, setOpen] = useState(false);
   const [revId, setRevId] = useState('');
+  const [user, setUser] = useState({userId: '',
+  firstName: '', 
+  lastName: '', 
+  email: ''});
+  const [userId, setUserId] = useState('')
+
+
 
   const fetchProducts = async (): Promise<void> => {
     await fetch(`${dbCall}/products/`, {
@@ -70,6 +77,43 @@ const App = () => {
         console.log(err);
       });
   };
+
+  useEffect(() => {
+   if(localStorage.getItem("Authorization"))
+   setSessionToken(localStorage.getItem("Authorization"));
+
+   const fetchUser = async ():Promise<void> => {
+     if (sessionToken !== '' && user.userId === '') {
+       await fetch(`${dbCall}/user/checkToken`, {
+         method: 'POST',
+         headers: {
+           'Content-Type' : 'application/json',
+           Authorization: `Bearer ${sessionToken}`
+         }
+       })
+       .then(res => {
+         return res.json()
+       })
+       .then(res => {
+         setUser(res)
+         setUserId(res.userId)
+          console.log(res)
+       })
+       .then(() => user)
+       .catch(error => console.log(error))
+     }else if (user.userId !== '' && sessionToken === '') {
+      setUser({
+        userId: '',
+        firstName: '', 
+        lastName: '', 
+        email: '', 
+     });
+    }
+  }
+
+  fetchUser()
+
+}, [user, sessionToken])
 
   useEffect(() => {
     fetchProducts();
@@ -229,6 +273,7 @@ const App = () => {
                 open={open}
                 setRevId={setRevId}
                 revId={revId}
+                userId={userId}
               />
             }
           />
