@@ -4,6 +4,7 @@ import dbCall from "../../helpers/environment";
 import { Navigate } from "react-router-dom";
 
 export type Props = {
+  role: string;
   image: string;
   location: string;
   firstName: string;
@@ -34,6 +35,7 @@ class Register extends React.Component<
       lastName: "",
       email: "",
       user: "",
+      role: 'general',
       passwordhash: "",
       sessionToken: this.props.sessionToken,
       setSessionToken: this.props.setSessionToken,
@@ -61,6 +63,7 @@ class Register extends React.Component<
           passwordhash: this.state.passwordhash,
           location: this.state.location,
           image: this.state.image,
+          role: this.state.role
         },
       }),
       headers: {
@@ -125,6 +128,13 @@ class Register extends React.Component<
               name="location"
               value={this.state.location}
               onChange={this.handleChange}
+            />
+                      <input
+                      className="hideRole"
+              type="role"
+              name="role"
+              value={this.state.role}
+              
             />
             <button type="submit">Submit</button>
           </form>

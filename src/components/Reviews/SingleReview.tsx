@@ -23,6 +23,7 @@ export type SingleReviewProps = {
   revId: any;
   fetchProducts: any;
   userId: string;
+  role: string;
 };
 
 export type ReviewState = {
@@ -113,7 +114,7 @@ class SingleReviews extends React.Component<SingleReviewProps, ReviewState> {
             <p>Id: {this.props.userId}</p>
             <p>revId: {reviews.userId}</p>
           </div>
-          {reviews.userId === this.props.userId ? (
+          {reviews.userId === this.props.userId || this.props.role === "admin" ? (
             <>
               <button
                 onClick={() => {

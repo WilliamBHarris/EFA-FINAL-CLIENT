@@ -33,6 +33,7 @@ export type TokenProp = {
   revId: any;
   fetchProducts: any;
   userId: string;
+  role: string;
 };
 
 class SingleProduct extends React.Component<TokenProp, ProductState> {
@@ -172,6 +173,7 @@ class SingleProduct extends React.Component<TokenProp, ProductState> {
             revId={this.props.revId}
             fetchProducts={this.props.fetchProducts}
             userId={this.props.userId}
+            role={this.props.role}
           />
         </div>
       </div>

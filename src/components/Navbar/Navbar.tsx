@@ -7,6 +7,8 @@ export type NavbarProps = {
   sessionToken: MainProps["sessionToken"];
   clearToken: MainProps["clearToken"];
   setSessionToken: MainProps["setSessionToken"];
+  role: string;
+  name: string;
 };
 
 class Navbar extends React.Component<
@@ -15,6 +17,8 @@ class Navbar extends React.Component<
     sessionToken: MainProps["sessionToken"];
     clearToken: MainProps["clearToken"];
     setSessionToken: MainProps["setSessionToken"];
+    role: string
+    name: string;
   },
   NavbarProps
 > {
@@ -26,6 +30,8 @@ class Navbar extends React.Component<
       sessionToken: this.props.sessionToken,
       clearToken: this.props.clearToken,
       setSessionToken: this.props.setSessionToken,
+      role: this.props.role,
+      name: this.props.name
     };
   }
 
@@ -41,7 +47,13 @@ class Navbar extends React.Component<
         )}
 
         {this.props.sessionToken !== "" ? (
-          <button onClick={this.props.clearToken}>Logout</button>
+          <>
+          <h3>{this.props.name}</h3>
+          <Link to="/">Home</Link>
+          <Link to="/products">Products</Link>
+         {this.props.role === 'admin' ? <Link to="/admin">Admin</Link> : null} 
+          <Link to="/"><button onClick={this.props.clearToken}>Logout</button></Link>
+          </>
         ) : (
           ""
         )}

@@ -5,13 +5,14 @@ import Login from "./components/Auth/Login";
 import Register from "./components/Auth/Register";
 import Home from "./components/Home/Home";
 import Navbar from "./components/Navbar/Navbar";
-import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import Badge from "@material-ui/core/Badge";
 import Drawer from "@material-ui/core/Drawer";
 import Cart from "./components/Cart/Cart";
 import Products from "./components/Products/Products";
 import SingleProduct from "./components/Products/SingleProduct";
 import dbCall from "./helpers/environment";
+import AdminMain from "./components/Admin/AdminMain";
 
 export type CartItemType = {
   id: number;
@@ -21,11 +22,6 @@ export type CartItemType = {
   price: number;
   title: string;
   amount: number;
-};
-export type ReviewType = {
-  id: number;
-  description: string;
-  title: string;
 };
 
 export type SetSessionToken = {
@@ -51,14 +47,17 @@ const App = () => {
   const [reviewId, setReviewId] = useState("");
   const [reviewTotal, setReviewTotal] = useState(0);
   const [open, setOpen] = useState(false);
-  const [revId, setRevId] = useState('');
-  const [user, setUser] = useState({userId: '',
-  firstName: '', 
-  lastName: '', 
-  email: ''});
-  const [userId, setUserId] = useState('')
-
-
+  const [revId, setRevId] = useState("");
+  const [user, setUser] = useState({
+    userId: "",
+    firstName: "",
+    lastName: "",
+    email: "",
+    role: ''
+  });
+  const [userId, setUserId] = useState("");
+  const [role, setRole] = useState("");
+  const [name, setName] = useState('')
 
   const fetchProducts = async (): Promise<void> => {
     await fetch(`${dbCall}/products/`, {
@@ -79,41 +78,42 @@ const App = () => {
   };
 
   useEffect(() => {
-   if(localStorage.getItem("Authorization"))
-   setSessionToken(localStorage.getItem("Authorization"));
+    if (localStorage.getItem("Authorization"))
+      setSessionToken(localStorage.getItem("Authorization"));
 
-   const fetchUser = async ():Promise<void> => {
-     if (sessionToken !== '' && user.userId === '') {
-       await fetch(`${dbCall}/user/checkToken`, {
-         method: 'POST',
-         headers: {
-           'Content-Type' : 'application/json',
-           Authorization: `Bearer ${sessionToken}`
-         }
-       })
-       .then(res => {
-         return res.json()
-       })
-       .then(res => {
-         setUser(res)
-         setUserId(res.userId)
-          console.log(res)
-       })
-       .then(() => user)
-       .catch(error => console.log(error))
-     }else if (user.userId !== '' && sessionToken === '') {
-      setUser({
-        userId: '',
-        firstName: '', 
-        lastName: '', 
-        email: '', 
-     });
-    }
-  }
-
-  fetchUser()
-
-}, [user, sessionToken])
+    const fetchUser = async (): Promise<void> => {
+      if (sessionToken !== "" && user.userId === "") {
+        await fetch(`${dbCall}/user/setUser`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${sessionToken}`,
+          },
+        })
+          .then((res) => {
+            return res.json();
+          })
+          .then((res) => {
+            setUser(res);
+            setUserId(res.userId);
+            setRole(res.role)
+            setName(`${res.firstName} ${res.lastName}`)
+            console.log(res);
+          })
+          .then(() => user)
+          .catch((error) => console.log(error));
+      } else if (user.userId !== "" && sessionToken === "") {
+        setUser({
+          userId: "",
+          firstName: "",
+          lastName: "",
+          email: "",
+          role: ''
+        });
+      }
+    };
+    fetchUser();
+  }, [user, sessionToken]);
 
   useEffect(() => {
     fetchProducts();
@@ -130,7 +130,9 @@ const App = () => {
     localStorage.clear();
     setSessionToken("");
     setIsLoggedIn(false);
-  };
+    setRole('');
+    setUserId('')
+      };
 
   const handleAddToCart = (clickedItem: CartItemType) => {
     setCartItems((prev) => {
@@ -165,19 +167,16 @@ const App = () => {
     items.reduce((ack: number, item) => ack + item.amount, 0);
 
   const reviewIdLog = () => {
-    if (revId === 'delete') {
-      return (
-      deleteRev())
+    if (revId === "delete") {
+      return deleteRev();
     }
   };
 
   const updateReview = () => {
-    if (revId === 'update' || revId === 'add'){
-      return (
-        fetchProducts()
-      )
-    } 
-  }
+    if (revId === "update" || revId === "add") {
+      return fetchProducts();
+    }
+  };
 
   const deleteRev = async (): Promise<void> => {
     await fetch(`${dbCall}/review/${reviewId}`, {
@@ -186,11 +185,10 @@ const App = () => {
         "Content-Type": "application/json",
         Authorization: `Bearer ${localStorage.getItem("Authorization")}`,
       }),
-      
-    }).then((res)=>{
-        setReviewId('')
-        setRevId('')
-      });
+    }).then((res) => {
+      setReviewId("");
+      setRevId("");
+    });
   };
 
   const handleClickOpen = () => {
@@ -213,11 +211,12 @@ const App = () => {
             cartItems={cartItems}
             addToCart={handleAddToCart}
             removeFromCart={handleRemoveFromCart}
+            sessionToken={sessionToken}
           />
         </Drawer>
         <button onClick={() => setCartOpen(true)}>
           <Badge badgeContent={getTotalItems(cartItems)} color="error">
-            <AddShoppingCartIcon />
+            <ShoppingCartIcon />
           </Badge>
         </button>
         <Navbar
@@ -225,17 +224,19 @@ const App = () => {
           setSessionToken={setSessionToken}
           sessionToken={sessionToken}
           isLoggedIn={isLoggedIn}
+          role={role}
+          name={name}
         />
 
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/admin" element={<AdminMain role={role} />} />
           <Route
             path="/products"
             element={
               <Products handleAddToCart={handleAddToCart} item={item.sort()} />
             }
           />
-          {/* <Route path="/reviewupdate" element={<ReviewUpdate />} /> */}
           <Route
             path="/register"
             element={
@@ -274,6 +275,7 @@ const App = () => {
                 setRevId={setRevId}
                 revId={revId}
                 userId={userId}
+                role={role}
               />
             }
           />
