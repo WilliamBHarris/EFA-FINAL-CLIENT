@@ -84,7 +84,7 @@ class SingleProduct extends React.Component<TokenProp, ProductState> {
   }
 
   componentDidUpdate() {
-    if (this.props.revId === "add" || this.props.revId === "update" || this.props.revId === 'delete')
+    if (this.props.revId === "add" || this.props.revId === "update" || this.props.revId === 'delete' || this.props.revId === 'delete-p')
       this.fetchProducts();
   }
 

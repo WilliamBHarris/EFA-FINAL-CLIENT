@@ -234,7 +234,7 @@ const App = () => {
           <Route
             path="/products"
             element={
-              <Products handleAddToCart={handleAddToCart} item={item.sort()} />
+              <Products setRevId={setRevId} handleAddToCart={handleAddToCart} item={item.sort()}  fetchProducts={fetchProducts}/>
             }
           />
           <Route

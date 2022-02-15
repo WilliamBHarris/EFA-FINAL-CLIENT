@@ -6,6 +6,8 @@ import { CartItemType } from "../../App";
 export type ProductProps = {
   item: CartItemType[];
   handleAddToCart: (clickedItem: CartItemType) => void;
+  fetchProducts: any;
+  setRevId: any;
 };
 
 class Products extends React.Component< ProductProps> {
@@ -14,7 +16,7 @@ class Products extends React.Component< ProductProps> {
       <Grid container spacing={3}>
         {this.props.item?.map((item) => (
           <Grid item key={item.id} xs={12} sm={4}>
-            <Item handleAddToCart={this.props.handleAddToCart} item={item} />
+            <Item setRevId={this.props.setRevId} fetchProducts={this.props.fetchProducts} handleAddToCart={this.props.handleAddToCart} item={item} />
           </Grid>
         ))}
       </Grid>

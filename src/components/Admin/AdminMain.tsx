@@ -1,4 +1,8 @@
 import React from "react";
+import ProductForm from "./components/ProductForm";
+
+
+
 export type AdminMainProps = {
     role: string;
 }
@@ -14,9 +18,10 @@ render(): React.ReactNode {
     return (
         <>
         {this.props.role === 'admin' ? 
-        
+        <div>
         <h1>Welcome Admin</h1> 
-        
+        <ProductForm />
+        </div>
         
         
         
