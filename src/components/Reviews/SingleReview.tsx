@@ -39,8 +39,8 @@ class SingleReviews extends React.Component<SingleReviewProps, ReviewState> {
     super(props);
     this.state = {
       theId: "",
-      title: "",
-      description: "",
+      title: '',
+      description: '',
       open: false,
       revId: "",
     };
@@ -111,10 +111,9 @@ class SingleReviews extends React.Component<SingleReviewProps, ReviewState> {
             </h5>
             <h3>{reviews.title}</h3>
             <p>{reviews.description}</p>
-            <p>Id: {this.props.userId}</p>
-            <p>revId: {reviews.userId}</p>
           </div>
-          {reviews.userId === this.props.userId || this.props.role === "admin" ? (
+          {reviews.userId === this.props.userId ||
+          this.props.role === "admin" ? (
             <>
               <button
                 onClick={() => {
@@ -127,7 +126,6 @@ class SingleReviews extends React.Component<SingleReviewProps, ReviewState> {
               </button>
 
               <Button
-                variant="outlined"
                 onClick={() => this.setState({ open: true, revId: reviews.id })}
               >
                 Edit

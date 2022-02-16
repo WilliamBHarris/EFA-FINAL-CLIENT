@@ -66,25 +66,30 @@ class SingleProduct extends React.Component<TokenProp, ProductState> {
     })
       .then((res) => res.json())
       .then((res) => {
-        console.log(res)
+        console.log(res);
         this.setState({
           prodTitle: res.title,
           image: res.image,
           prodDescription: res.description,
           reviews: [...res.reviews],
-          userName: '',
+          userName: "",
         });
       })
       .catch((error) => console.log(error));
   };
 
   componentDidMount() {
-
     this.fetchProducts();
   }
 
   componentDidUpdate() {
-    if (this.props.revId === "add" || this.props.revId === "update" || this.props.revId === 'delete' || this.props.revId === 'delete-p')
+    if (
+      this.props.revId === "add" ||
+      this.props.revId === "update" ||
+      this.props.revId === "delete" ||
+      this.props.revId === "delete-p" ||
+      this.props.revId === "update-p"
+    )
       this.fetchProducts();
   }
 
@@ -109,18 +114,18 @@ class SingleProduct extends React.Component<TokenProp, ProductState> {
       },
     })
       .then((res) => {
-        console.log(res)
+        console.log(res);
         this.props.setRevId("add");
       })
       .then(() => {
-        this.props.setRevId('')
+        this.props.setRevId("");
         this.setState({
           title: "",
           description: "",
         });
       })
       .then(() => {
-        this.props.setRevId('')
+        this.props.setRevId("");
       })
       .catch((error) => console.log(error));
   };

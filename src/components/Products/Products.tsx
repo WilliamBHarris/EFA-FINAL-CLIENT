@@ -8,7 +8,9 @@ export type ProductProps = {
   handleAddToCart: (clickedItem: CartItemType) => void;
   fetchProducts: any;
   setRevId: any;
+  handleClose: any;
 };
+
 
 class Products extends React.Component< ProductProps> {
   render(): React.ReactNode {    
@@ -16,7 +18,7 @@ class Products extends React.Component< ProductProps> {
       <Grid container spacing={3}>
         {this.props.item?.map((item) => (
           <Grid item key={item.id} xs={12} sm={4}>
-            <Item setRevId={this.props.setRevId} fetchProducts={this.props.fetchProducts} handleAddToCart={this.props.handleAddToCart} item={item} />
+            <Item handleClose={this.props.handleClose} setRevId={this.props.setRevId} fetchProducts={this.props.fetchProducts} handleAddToCart={this.props.handleAddToCart} item={item} />
           </Grid>
         ))}
       </Grid>

@@ -58,6 +58,7 @@ const App = () => {
   const [userId, setUserId] = useState("");
   const [role, setRole] = useState("");
   const [name, setName] = useState('')
+ 
 
   const fetchProducts = async (): Promise<void> => {
     await fetch(`${dbCall}/products/`, {
@@ -117,8 +118,8 @@ const App = () => {
 
   useEffect(() => {
     fetchProducts();
-    reviewIdLog();
-    updateReview();
+reviewIdLog();
+    updateReview();    
   }, [reviewId, revId]);
 
   const updateToken = (newToken: string) => {
@@ -234,7 +235,7 @@ const App = () => {
           <Route
             path="/products"
             element={
-              <Products setRevId={setRevId} handleAddToCart={handleAddToCart} item={item.sort()}  fetchProducts={fetchProducts}/>
+              <Products handleClose={handleClose} setRevId={setRevId} handleAddToCart={handleAddToCart} item={item.sort()}  fetchProducts={fetchProducts}/>
             }
           />
           <Route
