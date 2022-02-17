@@ -24,6 +24,7 @@ export type CartItemType = {
   amount: number;
 };
 
+
 export type SetSessionToken = {
   setSessionToken: (sessionToken: string) => void;
 };
@@ -215,7 +216,7 @@ reviewIdLog();
             sessionToken={sessionToken}
           />
         </Drawer>
-        <button onClick={() => setCartOpen(true)}>
+        <button className='cartIcon' onClick={() => setCartOpen(true)}>
           <Badge badgeContent={getTotalItems(cartItems)} color="error">
             <ShoppingCartIcon />
           </Badge>

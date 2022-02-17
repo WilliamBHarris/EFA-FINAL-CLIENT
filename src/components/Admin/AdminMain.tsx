@@ -1,5 +1,6 @@
 import React from "react";
 import ProductForm from "./components/ProductForm";
+import DeleteUser from "./components/DeleteUser";
 
 
 
@@ -21,6 +22,7 @@ render(): React.ReactNode {
         <div>
         <h1>Welcome Admin</h1> 
         <ProductForm />
+        <DeleteUser />
         </div>
         
         

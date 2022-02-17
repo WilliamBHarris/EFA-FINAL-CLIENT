@@ -25,8 +25,8 @@ export type TokenProp = {
   setReviewId: any;
   reviewId: string;
   setReviewTotal: any;
-  handleClose: any;
-  handleClickOpen: any;
+  handleClose: () => void;
+  handleClickOpen: () => void;
   setOpen: any;
   open: any;
   setRevId: any;

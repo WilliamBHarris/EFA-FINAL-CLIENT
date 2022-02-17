@@ -12,6 +12,7 @@ export type ProductFormState = {
     price: number;
     category: string;
     image: string;
+    alert: string;
 }
 
 class ProductForm extends React.Component <{}, ProductFormState> {
@@ -25,6 +26,7 @@ class ProductForm extends React.Component <{}, ProductFormState> {
       price: 0,
       category: '',
       image: '',
+      alert: '',
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -49,7 +51,8 @@ class ProductForm extends React.Component <{}, ProductFormState> {
           image: this.state.image,
           category: this.state.category,
           amount: this.state.amount,
-          price: this.state.price
+          price: this.state.price,
+        
         },
       }),
       headers: {
@@ -64,9 +67,10 @@ class ProductForm extends React.Component <{}, ProductFormState> {
             title: '',
             description: '',
             amount: 0,
-            price: 0.00,
+            price: 0,
             category: '',
             image: '',
+            alert: 'added'
         })
       })
       .catch((error) => console.log(error));
@@ -121,9 +125,9 @@ class ProductForm extends React.Component <{}, ProductFormState> {
               onChange={this.handleChange}
             />
             <button type="submit">Submit</button>
+            {this.state.alert === 'added' ? <p>Item Added</p>: null}
           </form>
         </div>
-        {/* {this.state.user !== "" ? <Navigate to="/" /> : null} */}
       </div>
     );
   }

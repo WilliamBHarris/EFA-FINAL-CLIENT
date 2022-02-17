@@ -15,10 +15,10 @@ export type SingleReviewProps = {
   userName: any;
   reviewId: any;
   setReviewId: any;
-  handleClose: any;
-  handleClickOpen: any;
+  handleClose: () => void;
+  handleClickOpen: () => void;
   setOpen: any;
-  open: any;
+  open: string;
   setRevId: any;
   revId: any;
   fetchProducts: any;
@@ -75,8 +75,8 @@ class SingleReviews extends React.Component<SingleReviewProps, ReviewState> {
         console.log(res);
         this.props.setRevId("");
         this.setState({
-          description: this.state.description,
-          title: this.state.title,
+          description: '',
+          title: '',
         });
         this.props.setRevId("update");
         this.props.fetchProducts();
@@ -126,7 +126,7 @@ class SingleReviews extends React.Component<SingleReviewProps, ReviewState> {
               </button>
 
               <Button
-                onClick={() => this.setState({ open: true, revId: reviews.id })}
+                onClick={() => this.setState({ open: true, revId: reviews.id, title: reviews.title, description: reviews.description })}
               >
                 Edit
               </Button>
