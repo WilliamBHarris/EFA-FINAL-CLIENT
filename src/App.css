@@ -1,73 +1,218 @@
 /* FONTS */
-/* font-family: 'La Belle Aurore', cursive; */
+/* font-family: 'La Belle Aurore', cursive;
+font-family: 'Marvel', sans-serif;
+font-family: 'Rock Salt', cursive;
+font-family: 'Wallpoet', cursive; */
 
 * {
-    margin: 0;
-    border: 0;
-    box-sizing: border-box;
+  margin: 0;
+  border: 0;
+  box-sizing: border-box;
 }
 
-
 .itemCard {
-   border: 1px solid black;
-   background-color: white;
+  border: 1px solid black;
+  background-color: white;
 }
 /* Nav */
 
 .navMain {
-    display: flex;
-    justify-content: center;
-    background: transparent;
+  display: flex;
+  justify-content: center;
+  background: transparent;
 }
 
 .navLogo {
-    font-family: 'La Belle Aurore', cursive;
-    color: white;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    letter-spacing: 10px;
-    margin-left: 50px;
-    font-size: 90px
+  font-family: "La Belle Aurore", cursive;
+  color: white;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  letter-spacing: 10px;
+  margin-left: 50px;
+  font-size: 90px;
 }
 
 .navLink {
-    color: white;
-    text-decoration: none;
-    font-size: 20px;
-    margin: 0px 30px 0px 30px;
+  color: white;
+  text-decoration: none;
+  font-family: 'Marvel', sans-serif;
+  font-size: 23px;
+  letter-spacing: 4px;
+  cursor: grab;
+  margin: 0 30px 0 30px;
 }
 
-  .reviewMain {
-      border: 1px solid black;
-      width: 50%;
-      margin: 20px;
-      padding: 20px;
+.navLink:hover {
+  text-decoration: underline;
+}
+
+.navBox {
+  background: black;
+  width: 50%;
+  display: flex;
+  justify-content: space-around;
+  height: 70px;
+  align-items: center;
+  position: absolute;
+}
+
+.navButton {
+  border: none;
+  height: 35px;
+  width: 80px;
+  font-family: 'Marvel', sans-serif;
+  font-size: 15px;
+  letter-spacing: 1px;
+  background: red;
+  color: white;
+  position: absolute;
+  right: 10%;
+  top: 3.8%; 
+  cursor: grab;
+}
+.navButton:hover {
+    background: white;
+    color: red;
+}
+
+.userName {
+    color: white;
+    position: absolute;
+    font-size: 20px;
+    right: 7.4%;
+    top: 0;
+    background: rgba(0, 0, 0, 0.85);
+    padding: 5px 20px;
+    font-family: 'Marvel', sans-serif;
+}
+
+/* NAV END */
+
+.reviewMain {
+  border: 1px solid black;
+  width: 50%;
+  margin: 20px;
+  padding: 20px;
+}
+
+
+
+.hideRole {
+  display: none;
+}
+
+/* CART */
+
+.cartIcon {
+  position: absolute;
+  right: 0;
+  border: none;
+  background: red;
+  height: 70px;
+  width: 70px;
+  cursor: grab;
+}
+
+/* HOME */
+
+.homeBackground {
+  background-image: url("./assets/GraffiTEESbg.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  width: 100%;
+}
+
+.homeSlogan1 {
+  color: white;
+  font-size: 53px;
+  /* border: 1px solid red; */
+  position: absolute;
+  font-family: 'Rock Salt', cursive;
+  top: 30%;
+  left: 19%;
+  /* background-color: rgb(0, 0, 0, 0.6); */
+  letter-spacing: 2px;
+  color: white;
+  padding: 2px 40px;
+  text-shadow: 5px 8px rgb(255, 0 , 0, .7);
+}
+.homeSlogan2 {
+  padding: 20px 40px;
+  color: white;
+  font-size: 50px;
+  position: absolute;
+  font-family: 'Rock Salt', cursive;
+  top: 39%;
+  left: 23%;
+  text-shadow: 5px 8px rgb(255, 0 , 0, .7);
+}
+
+.homeLogo {
+  background-image: url("./assets/logo.png");
+  height: 100px;
+  background-repeat: no-repeat;
+  width: 1000px;
+  position: absolute;
+  bottom: 0;
+  margin-left: 50px;
+}
+.homeLogo2 {
+  background-image: url("./assets/can.png");
+  height: 90px;
+  width: 500px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  position: absolute;
+  bottom: 3.6%;
+  opacity: 0.2;
+  margin-left: 108px;
+  animation-name: canLogo;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes canLogo {
+  from {
+    opacity: 0.1;
   }
-
-  .hideRole {
-      display: none;
+  to {
+    opacity: 0.9;
   }
+}
 
-  /* CART */
+.homeInvButton {
+  position: absolute;
+  top: 55%;
+  left: 53%;
+  padding: 15px 30px;
+  font-size: 30px;
+  background: red;
+  color: white;
+  font-family: 'Marvel', sans-serif;
+  cursor: grab;
+}
 
-  .cartIcon {
-      position: absolute;
-      right: 0;
-      border: none;
-      background: white;
-        height: 70px;
-        width: 70px;
-  }
+/* HOME END */
 
-  /* HOME */
+/* PRODUCTS CARD */
 
-  .homeBackground {
-      background-image: url('./assets/GraffiTEESbg.png');
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
-      height: 105vh;
-      width: 100%;
-      margin-top: -22px;
-  }
+.cardImg {
+    height: 100%;
+    width: 100%;
+}
+
+.productMain {
+    background-image: url("./assets/GraffiTEESbg.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 103vh;
+    width: 100%;
+    margin: none;
+    overflow-y: hidden;
+}

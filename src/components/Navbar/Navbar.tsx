@@ -37,9 +37,9 @@ class Navbar extends React.Component<
 
   render(): React.ReactNode {
     return (
-      <div>
-        <div className="navMain">
-          <h1 className='navLogo'>graffitees</h1>
+      <div className="navMain">
+        <div className='navBox'>
+          
           {this.props.sessionToken !== "" ? "" : <Link className="navLink" to="/login">Login</Link>}
           {this.props.sessionToken !== "" ? (
             ""
@@ -48,21 +48,22 @@ class Navbar extends React.Component<
           )}
 
           {this.props.sessionToken !== "" ? (
-            <>
-              {this.props.name !== "" ? <h3>{this.props.name}</h3> : null}
-              <Link className="navLink"  to="/">Home</Link>
+            <div className='navBox'>              
               <Link className="navLink"  to="/products">Products</Link>
+              <Link className="navLink"  to="/products">About</Link>
+              <Link className="navLink"  to="/contact">Contact</Link>
               {this.props.role === "admin" ? (
                 <Link className="navLink"  to="/admin">Admin</Link>
               ) : null}
-              <Link to="/">
-                <button onClick={this.props.clearToken}>Logout</button>
-              </Link>
-            </>
+              
+            </div>
           ) : (
             ""
           )}
         </div>
+        {this.props.name !== "" ? <div><p className="userName">Welcome {this.props.name}!</p>
+                <Link to="/"><button className="navButton"  onClick={this.props.clearToken}>Logout</button></Link></div>
+               : null}
       </div>
     );
   }

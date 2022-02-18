@@ -133,7 +133,8 @@ reviewIdLog();
     setSessionToken("");
     setIsLoggedIn(false);
     setRole('');
-    setUserId('')
+    setUserId('');
+    setName('');
       };
 
   const handleAddToCart = (clickedItem: CartItemType) => {

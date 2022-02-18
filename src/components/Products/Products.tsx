@@ -15,6 +15,7 @@ export type ProductProps = {
 class Products extends React.Component< ProductProps> {
   render(): React.ReactNode {    
     return (
+      <div className="productMain">
       <Grid container spacing={3}>
         {this.props.item?.map((item) => (
           <Grid item key={item.id} xs={12} sm={4}>
@@ -22,6 +23,7 @@ class Products extends React.Component< ProductProps> {
           </Grid>
         ))}
       </Grid>
+      </div>
     );
   }
 }

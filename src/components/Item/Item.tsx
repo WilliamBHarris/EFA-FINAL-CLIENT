@@ -111,7 +111,7 @@ this.cancelClear = this.cancelClear.bind(this);
     return (
       <div className="wrapper">
         <div className="itemCard">
-          <img alt={this.props.item.title} src={this.props.item.image} />
+          <img className="cardImg" alt={this.props.item.title} src={this.props.item.image} />
           <h1>{this.props.item.title}</h1>
           <h1>{this.props.item.description}</h1>
           <h1>{this.props.item.category}</h1>
