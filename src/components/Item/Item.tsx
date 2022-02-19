@@ -17,6 +17,7 @@ export type ItemProps = {
   fetchProducts: any;
   setRevId: any;
   handleClose: any;
+  role: string;
 };
 
 export type ItemState = {
@@ -111,19 +112,29 @@ this.cancelClear = this.cancelClear.bind(this);
     return (
       <div className="wrapper">
         <div className="itemCard">
-          <img className="cardImg" alt={this.props.item.title} src={this.props.item.image} />
-          <h1>{this.props.item.title}</h1>
-          <h1>{this.props.item.description}</h1>
-          <h1>{this.props.item.category}</h1>
-          <h1>{this.props.item.amount}</h1>
-          <h1>{this.props.item.price}</h1>
-          <button onClick={() => this.props.handleAddToCart(this.props.item)}>Add to cart</button>
-          <Link to={`/products/${this.props.item.id}`}>Reviews</Link>
-          <button onClick={() => this.setState({ open: true, prodId: this.props.item.id })}>Update</button>
-          <button onClick={this.productDelete}>Delete</button>
+          <div className='itemImgCenter'>
+          <Link to={`/products/${this.props.item.id}`}><img className="cardImg" alt={this.props.item.title} src={this.props.item.image} /></Link>
+          </div>
+          <div className='itemInfo'>
+          <h2 className='itemTitle'>{this.props.item.title}</h2>
+          <p className='itemDescription'>{this.props.item.description}</p>
+          {/* <h3 className='itemCategory'>{this.props.item.category}</h3> */}
+          {/* <h3 className='itemAmount'>{this.props.item.amount}</h3> */}
+          <h3 className='itemPrice'>${this.props.item.price}</h3>
+          </div>
+          <div className='itemButtons'>
+          <button className='addCartBtn' onClick={() => this.props.handleAddToCart(this.props.item)}>Add to cart</button>
+          {this.props.role === 'admin' ? <><button className='adminBtn' onClick={() => this.setState({ open: true, prodId: this.props.item.id })}>Update</button>
+          <button className='adminBtn' onClick={this.productDelete}>Delete</button></> : null}
+          
+
+
+          <Link className='addCartBtn' to={`/products/${this.props.item.id}`}>Reviews</Link>
+          </div>
+          
           <Dialog open={this.state.open} onClose={this.props.handleClose}>
-                <DialogTitle>Update Review</DialogTitle>
-                <DialogContent>
+                <DialogTitle className="updateProdMain">Update Review</DialogTitle>
+                <DialogContent className="updateProdMain">
                   <DialogContentText>
                     Edit the contents of the review and update.
                   </DialogContentText>
@@ -162,7 +173,7 @@ this.cancelClear = this.cancelClear.bind(this);
                     value={this.state.price}
                     onChange={(e) => this.setState({ price: e.target.value })}
                   />
-                  <TextField
+                  {/* <TextField
                     autoFocus
                     margin="dense"
                     id="name"
@@ -183,7 +194,7 @@ this.cancelClear = this.cancelClear.bind(this);
                     variant="standard"
                     value={this.state.category}
                     onChange={(e) => this.setState({ category: e.target.value })}
-                  />
+                  /> */}
                   <TextField
                     autoFocus
                     margin="dense"
@@ -196,7 +207,7 @@ this.cancelClear = this.cancelClear.bind(this);
                     onChange={(e) => this.setState({ image: e.target.value })}
                   />
                 </DialogContent>
-                <DialogActions>
+                <DialogActions className="updateProdMain">
                   <Button onClick={this.cancelClear}>Cancel</Button>
                   <Button onClick={this.handleUpdate}>Update</Button>
                 </DialogActions>

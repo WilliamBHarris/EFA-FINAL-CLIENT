@@ -2,7 +2,7 @@ import React from 'react';
 import { Navigate} from 'react-router-dom';
 import { MainProps} from '../../App';
 import dbCall from '../../helpers/environment';
-
+import { Link } from 'react-router-dom';
 
 
 
@@ -74,21 +74,36 @@ class Login extends React.Component<{
   
   render(): React.ReactNode {
       return (
-        <div>
-          <div >
-            <div>Login</div>
-            <form onSubmit={this.loginUser}>
-              <div>Email</div>
-              <input type='email' name='email' value={this.state.email} onChange={this.handleChange}/>
-              <div>Password</div>
-              <input  type='password' name='passwordhash' value={this.state.passwordhash} onChange={this.handleChange}/>
-              <button type='submit' >Login</button>
-            </form>
-            <div>new?</div>
-            <div>Sign up here!</div>
-          </div>
-          {this.state.user !== '' ?  <Navigate to='/' /> : null}
+        <div className='mainRegister'>
+        <div className="homeLogo"></div>
+        <div className="homeLogo2"></div>
+        <div className='registerBox'>
+          <div className='formTitle'>Login</div>
+          <form className="formBox" onSubmit={this.loginUser}>           
+            <div className='inputTitle'>Email</div>
+            <input
+            className='inputBox'
+              type="email"
+              name="email"
+              value={this.state.email}
+              onChange={this.handleChange}
+              required
+            />
+            <div className='inputTitle'>Password</div>
+            <input
+              className='inputBox'
+              type="password"
+              name="passwordhash"
+              value={this.state.passwordhash}
+              onChange={this.handleChange}
+              required
+            />                     
+            <br/>
+            <button className="formBtn" type="submit">Login</button>
+          </form>
         </div>
+        {this.state.user !== "" ? <Navigate to="/" /> : null}
+      </div>
       )
   }
 }

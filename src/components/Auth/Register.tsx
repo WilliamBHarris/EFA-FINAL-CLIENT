@@ -2,6 +2,7 @@ import React from "react";
 import { MainProps } from "../../App";
 import dbCall from "../../helpers/environment";
 import { Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export type Props = {
   role: string;
@@ -83,40 +84,50 @@ class Register extends React.Component<
 
   render(): React.ReactNode {
     return (
-      <div>
-        <div>
-          <div>Sign Up</div>
-          <form onSubmit={this.registerUser}>
-            <div>First Name</div>
+      <div className='mainRegister'>
+        <div className="homeLogo"></div>
+        <div className="homeLogo2"></div>
+        <div className='registerBox'>
+          <div className='formTitle'>Sign Up</div>
+          <form className="formBox" onSubmit={this.registerUser}>
+            <div className='inputTitle'>First Name</div>
             <input
+            className='inputBox'
               type="text"
               name="firstName"
               value={this.state.firstName}
               onChange={this.handleChange}
+              required
             />
-            <div>Last Name</div>
+            <div className='inputTitle'>Last Name</div>
             <input
+            className='inputBox'
               type="text"
               name="lastName"
               value={this.state.lastName}
               onChange={this.handleChange}
+              required
             />
-            <div>Email</div>
+            <div className='inputTitle'>Email</div>
             <input
-              type="text"
+            className='inputBox'
+              type="email"
               name="email"
               value={this.state.email}
               onChange={this.handleChange}
+              required
             />
-            <div>Password</div>
+            <div className='inputTitle'>Password</div>
             <input
-              type="text"
+              className='inputBox'
+              type="password"
               name="passwordhash"
               value={this.state.passwordhash}
               onChange={this.handleChange}
+              required
             />
-            <div>image</div>
-            <input
+           {/* <div>image</div>
+             <input
               type="text"
               name="image"
               value={this.state.image}
@@ -128,16 +139,26 @@ class Register extends React.Component<
               name="location"
               value={this.state.location}
               onChange={this.handleChange}
-            />
-                      <input
+            /> */}
+                      <input 
                       className="hideRole"
               type="role"
               name="role"
               value={this.state.role}
               
             />
-            <button type="submit">Submit</button>
+            <br/>
+            <button className="formBtn" type="submit">Register</button>
           </form>
+          <p className="alreadyUser">
+              Already a user? Login
+              <span className="link">
+                <Link className="aLink" to="/login">
+                  here
+                </Link>
+              </span>
+              !
+            </p>
         </div>
         {this.state.user !== "" ? <Navigate to="/" /> : null}
       </div>

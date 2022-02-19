@@ -237,7 +237,7 @@ reviewIdLog();
           <Route
             path="/products"
             element={
-              <Products handleClose={handleClose} setRevId={setRevId} handleAddToCart={handleAddToCart} item={item.sort()}  fetchProducts={fetchProducts}/>
+              <Products role={role} handleClose={handleClose} setRevId={setRevId} handleAddToCart={handleAddToCart} item={item.sort()}  fetchProducts={fetchProducts}/>
             }
           />
           <Route

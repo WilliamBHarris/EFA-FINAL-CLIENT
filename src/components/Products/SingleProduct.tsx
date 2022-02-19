@@ -2,6 +2,7 @@ import React from "react";
 import SingleReviews from "../Reviews/SingleReview";
 import { MainProps } from "../../App";
 import dbCall from "../../helpers/environment";
+import { Link } from "react-router-dom";
 
 export type ProductState = {
   productId: string;
@@ -139,12 +140,18 @@ class SingleProduct extends React.Component<TokenProp, ProductState> {
 
   render(): React.ReactNode {
     return (
-      <div>
-        <form onSubmit={this.addReview}>
-          <img src={this.state.image} alt={this.state.prodTitle} />
+      <div className='productMain'>
+        <div className="homeLogo"></div>
+        <div className="homeLogo2"></div>
+
+        <div className='singleMain'>
+        
+        <form  onSubmit={this.addReview}>
+          <div className="singleItemBox">
+          <img className='cardImgSingle' src={this.state.image} alt={this.state.prodTitle} />
           <p>{this.state.prodTitle}</p>
           <p>{this.state.prodDescription}</p>
-
+          
           <h3>Add a review:</h3>
           <p>Title:</p>
           <input
@@ -161,9 +168,10 @@ class SingleProduct extends React.Component<TokenProp, ProductState> {
             value={this.state.description}
           />
           <br />
-          <button type="submit">Submit</button>
+          <button type="submit">Submit</button></div>
         </form>
-        <div>
+        
+        <div className="reviewContainer">
           <h1>Reviews ({this.state.reviews.length})</h1>
           <SingleReviews
             setReviewId={this.props.setReviewId}
@@ -181,7 +189,7 @@ class SingleProduct extends React.Component<TokenProp, ProductState> {
             role={this.props.role}
           />
         </div>
-      </div>
+      </div></div>
     );
   }
 }

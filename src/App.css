@@ -9,17 +9,22 @@ font-family: 'Wallpoet', cursive; */
   border: 0;
   box-sizing: border-box;
 }
+ 
 
-.itemCard {
-  border: 1px solid black;
-  background-color: white;
-}
+
 /* Nav */
 
 .navMain {
   display: flex;
   justify-content: center;
   background: transparent;
+}
+
+.logoOverlay {
+  background: rgba(0, 0, 0, 0.5);
+  height: 70px;
+  width: 30%;
+  position: absolute;
 }
 
 .navLogo {
@@ -202,8 +207,15 @@ font-family: 'Wallpoet', cursive; */
 /* PRODUCTS CARD */
 
 .cardImg {
-    height: 100%;
-    width: 100%;
+    height: 200px;
+    width: 200px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.itemImgCenter {
+  display: flex;
+  justify-content: center;
 }
 
 .productMain {
@@ -211,8 +223,254 @@ font-family: 'Wallpoet', cursive; */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    height: 103vh;
+    height: 100vh;
     width: 100%;
-    margin: none;
-    overflow-y: hidden;
+    background-attachment: fixed;
+    overflow-x: hidden;
+}
+
+.mainGrid {
+  width: 90%;
+  margin: auto;
+  margin-top: 200px;
+}
+.itemCard {
+  position: relative;
+  border: 1px solid red;
+  background: rgba(0, 0, 0, 0.3);
+  height: 400px;
+}
+
+.prodLogo {
+  background-image: url("./assets/logo.png");
+  height: 50px;
+  background-repeat: no-repeat;
+  width: 400px;
+  position: absolute;
+  top: 10%;
+  margin-left: 50px;
+}
+.prodLogo2 {
+  background-image: url("./assets/can.png");
+  height: 50px;
+  width: 50px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  position: absolute;
+  top: 10%;
+  opacity: 0.2;
+  margin-left: 320px;
+  animation-name: canLogo;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes canLogo {
+  from {
+    opacity: 0.1;
+  }
+  to {
+    opacity: 0.9;
+  }
+}
+
+.itemTitle {
+  color: white;
+  text-align: center;
+  margin-top: 10px;
+}
+.itemDescription {
+  color: white;
+  text-align: center;
+  margin-top: 10px;
+}
+.itemCategory {
+  color: white;
+  text-align: center;
+  margin-top: 10px;
+}
+.itemAmount {
+  color: white;
+  text-align: center;
+  margin-top: 10px;
+}
+.itemPrice {
+  color: white;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.itemButtons {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  justify-content: space-between;
+  height: 40px;
+
+}
+
+.addCartBtn {
+  height: 100%;
+  border: none;
+  background:red;
+  color: white;
+  text-decoration: none;
+  font-family: 'Marvel', sans-serif;
+  padding: 5px 20px;
+  font-size: 20px;
+}
+
+.adminBtn {
+  border: none;
+  height: 90%;
+  font-family: 'Marvel', sans-serif;
+  font-size: 17px;
+  padding: 10px;
+  background: transparent;
+  color: white;
+}
+
+.itemInfo {
+  padding-top: 20px;
+}
+
+/* ITEM CARD END */
+
+/* ITEM UPDATE */
+
+.updateProdMain{
+ background:rgba(0, 0, 0, 0.3);
+ font-family: 'Marvel', sans-serif;
+}
+
+/* ITEM UPDATE END */
+
+/* REGISTER */
+
+.mainRegister {
+  background-image: url("./assets/GraffiTEESbg.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  width: 100%;
+  background-attachment: fixed;
+  overflow-x: hidden;
+}
+
+.registerBox {
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid red;
+  width: 50%;
+  height: 600px;
+  margin: auto;
+  margin-top: 11%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: stretch
+}
+
+.inputTitle {
+  color: white;
+  font-family: 'Marvel', sans-serif;
+  font-size: 25px;
+}
+.inputBox {
+  background: rgb(255, 0 , 0, .3);
+  border: 1px solid red;
+  width: 50%;
+  height: 30px;
+  color: white;
+}
+
+.formBox {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  height: 70%;
+  align-items: center;
+  position: relative;
+}
+
+.formTitle {
+  color: white;
+  width: 100%;
+  text-align: center;
+  font-size: 40px;
+  font-family: 'Marvel', sans-serif;
+  letter-spacing: 3px;
+  font-weight: 800;
+  margin-top: 20px;
+  margin-bottom: -20px;
+}
+
+.formBtn {
+  border: none;
+  padding: 20px 40px;
+  font-family: 'Marvel', sans-serif;
+  font-size: 20px;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+}
+
+.alreadyUser {
+  border: 1px solid white;
+  width: 50%;
+  margin: auto;
+  text-align: center;
+  color: white;
+  font-size: 20px;
+  font-family: 'Marvel', sans-serif;
+  letter-spacing: 4px;
+  margin-bottom: 20px;
+  margin-top: -20px;
+  padding: 10px;
+}
+
+.aLink {
+  text-decoration: none;
+  color: red;
+  padding-left: 8px;
+}
+
+/* END REGISTER */
+
+/* SINGLE ITEM */
+
+.singleItemBox {
+  border: 1px solid white;
+  margin-top: 150px;
+  margin-left: -150px;
+}
+
+.cardImgSingle {
+  height: 400px;
+  width: 400px;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.singleMain {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  justify-content: space-around;
+}
+
+/* REVIEWS */
+
+.reviewContainer {
+  border: 1px solid white;
+  width: 50%;
+  height: 100%;
+}
+
+.reviewForm {
+  border: 1px solid white;
 }
