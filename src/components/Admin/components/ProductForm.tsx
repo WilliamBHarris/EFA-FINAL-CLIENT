@@ -78,12 +78,13 @@ class ProductForm extends React.Component <{}, ProductFormState> {
 
   render(): React.ReactNode {
     return (
-      <div>
-        <div>
-          <div>Create a product:</div>
-          <form onSubmit={this.createProduct}>
+      <div className="createMain">
+        <div className="createBox">
+          <h1 className='adminFormTitle'>List an Item</h1>
+          <form className="adminForm" onSubmit={this.createProduct}>
             <div>Title</div>
             <input
+            className="inputBox"
               type="text"
               name="title"
               value={this.state.title}
@@ -91,6 +92,7 @@ class ProductForm extends React.Component <{}, ProductFormState> {
             />
             <div>Description</div>
             <input
+            className="inputBox"
               type="text"
               name="description"
               value={this.state.description}
@@ -98,6 +100,7 @@ class ProductForm extends React.Component <{}, ProductFormState> {
             />
             <div>Price</div>
             <input
+              className="inputBox"
               type="text"
               name="price"
               value={this.state.price}
@@ -105,6 +108,7 @@ class ProductForm extends React.Component <{}, ProductFormState> {
             />
             <div>Amount</div>
             <input
+              className="inputBox"
               type="text"
               name="amount"
               value={this.state.amount}
@@ -112,6 +116,7 @@ class ProductForm extends React.Component <{}, ProductFormState> {
             />
             <div>Image</div>
             <input
+              className="inputBox"
               type="text"
               name="image"
               value={this.state.image}
@@ -119,13 +124,14 @@ class ProductForm extends React.Component <{}, ProductFormState> {
             />
             <div>Category</div>
             <input
+              className="inputBox"
               type="text"
               name="category"
               value={this.state.category}
               onChange={this.handleChange}
             />
-            <button type="submit">Submit</button>
-            {this.state.alert === 'added' ? <p>Item Added</p>: null}
+            <button className='adminPageBtn' type="submit">Submit</button>
+            {this.state.alert === 'added' ? <p className='itemAdded'>Item Added</p>: null}
           </form>
         </div>
       </div>

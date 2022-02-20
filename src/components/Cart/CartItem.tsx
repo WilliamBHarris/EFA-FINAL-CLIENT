@@ -12,34 +12,31 @@ type Props = {
 class CartItem extends React.Component<Props> {
     render(): React.ReactNode {
       return (
-          <div>
-    <div>
+          <div >
+    <div className='cartItemInfo'>
+    <img className='cartImg' src={this.props.item.image} alt={this.props.item.title} />
       <h3>{this.props.item.title}</h3>
       <div className='information'>
         <p>Price: ${this.props.item.price}</p>
         <p>Total: ${(this.props.item.amount * this.props.item.price).toFixed(2)}</p>
       </div>
-      <div className='buttons'>
-        <Button
-          size='small'
-          disableElevation
-          variant='contained'
+      <div className='cartButtons'>
+        <button
+        className='btn'
           onClick={() => this.props.removeFromCart(this.props.item.id)}
         >
           -
-        </Button>
-        <p>{this.props.item.amount}</p>
-        <Button
-          size='small'
-          disableElevation
-          variant='contained'
+        </button>
+        <p className='cartItemAmount'>{this.props.item.amount}</p>
+        <button
+        className='btn'
           onClick={() => this.props.addToCart(this.props.item)}
         >
           +
-        </Button>
+        </button>
       </div>
     </div>
-    <img src={this.props.item.image} alt={this.props.item.title} />
+    
   </div>
       );
     }

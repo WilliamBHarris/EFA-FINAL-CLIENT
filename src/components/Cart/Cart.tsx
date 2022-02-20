@@ -15,9 +15,9 @@ class Cart extends React.Component<Props> {
       items.reduce((ack: number, item) => ack + item.amount * item.price, 0);
     return (
       
-      <div>
-        <h2>Your Shopping Cart</h2>
-        {this.props.cartItems.length === 0 ? <p>No items in cart.</p> : null}
+      <div className='cartMain'>
+        <h2 className='cartTitle'>Items in your cart :</h2>
+        <div className="cartItemGrid">
         {this.props.cartItems.map((item) => (
           <CartItem
             key={item.id}
@@ -25,9 +25,12 @@ class Cart extends React.Component<Props> {
             addToCart={this.props.addToCart}
             removeFromCart={this.props.removeFromCart}
           />
-        ))}
-        <h2>Total: ${calculateTotal(this.props.cartItems).toFixed(2)}</h2>
-        {this.props.sessionToken === '' ? "Login to checkout" : <button>Checkout</button>}
+        ))}</div>
+        <div className="cartTotal">
+          {this.props.cartItems.length === 0 ? <p className='noItemCart'>Add an item to your cart</p> : <h2>Total: ${calculateTotal(this.props.cartItems).toFixed(2)}</h2> }
+        
+        {this.props.sessionToken === '' ? <p>"Login to checkout" </p>: <button className='checkoutBtn'>Checkout</button>}
+      </div>
       </div>
     );
   }

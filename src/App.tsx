@@ -24,7 +24,6 @@ export type CartItemType = {
   amount: number;
 };
 
-
 export type SetSessionToken = {
   setSessionToken: (sessionToken: string) => void;
 };
@@ -54,12 +53,11 @@ const App = () => {
     firstName: "",
     lastName: "",
     email: "",
-    role: ''
+    role: "",
   });
   const [userId, setUserId] = useState("");
   const [role, setRole] = useState("");
-  const [name, setName] = useState('')
- 
+  const [name, setName] = useState("");
 
   const fetchProducts = async (): Promise<void> => {
     await fetch(`${dbCall}/products/`, {
@@ -98,8 +96,8 @@ const App = () => {
           .then((res) => {
             setUser(res);
             setUserId(res.userId);
-            setRole(res.role)
-            setName(`${res.firstName} ${res.lastName}`)
+            setRole(res.role);
+            setName(`${res.firstName} ${res.lastName}`);
             console.log(res);
           })
           .then(() => user)
@@ -110,7 +108,7 @@ const App = () => {
           firstName: "",
           lastName: "",
           email: "",
-          role: ''
+          role: "",
         });
       }
     };
@@ -119,8 +117,8 @@ const App = () => {
 
   useEffect(() => {
     fetchProducts();
-reviewIdLog();
-    updateReview();    
+    reviewIdLog();
+    updateReview();
   }, [reviewId, revId]);
 
   const updateToken = (newToken: string) => {
@@ -132,10 +130,10 @@ reviewIdLog();
     localStorage.clear();
     setSessionToken("");
     setIsLoggedIn(false);
-    setRole('');
-    setUserId('');
-    setName('');
-      };
+    setRole("");
+    setUserId("");
+    setName("");
+  };
 
   const handleAddToCart = (clickedItem: CartItemType) => {
     setCartItems((prev) => {
@@ -217,8 +215,8 @@ reviewIdLog();
             sessionToken={sessionToken}
           />
         </Drawer>
-        <button className='cartIcon' onClick={() => setCartOpen(true)}>
-          <Badge badgeContent={getTotalItems(cartItems)} color="error">
+        <button className="cartIcon" onClick={() => setCartOpen(true)}>
+          <Badge className='badgeColor' badgeContent={getTotalItems(cartItems)} >
             <ShoppingCartIcon />
           </Badge>
         </button>
@@ -233,11 +231,18 @@ reviewIdLog();
 
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/admin" element={<AdminMain role={role} />} />
+          <Route path="/admin" element={<AdminMain role={role} name={name} />} />
           <Route
             path="/products"
             element={
-              <Products role={role} handleClose={handleClose} setRevId={setRevId} handleAddToCart={handleAddToCart} item={item.sort()}  fetchProducts={fetchProducts}/>
+              <Products
+                role={role}
+                handleClose={handleClose}
+                setRevId={setRevId}
+                handleAddToCart={handleAddToCart}
+                item={item.sort()}
+                fetchProducts={fetchProducts}
+              />
             }
           />
           <Route
@@ -279,6 +284,7 @@ reviewIdLog();
                 revId={revId}
                 userId={userId}
                 role={role}
+                name={name}
               />
             }
           />

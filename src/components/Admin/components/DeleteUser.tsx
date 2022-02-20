@@ -47,12 +47,13 @@ class DeleteUser extends React.Component <{}, DeleteUserState> {
 
   render(): React.ReactNode {
     return (
-      <div>
+      <div className='createMain'>
         <div>
-          <div>Delete a user:</div>
+          <h1 className='deleteTitle'>Delete a user</h1>
           <form onSubmit={this.delete}>
             <div>User Id</div>
             <input
+            className='inputBox'
               type="text"
               name="title"
               value={this.state.id}
@@ -60,9 +61,9 @@ class DeleteUser extends React.Component <{}, DeleteUserState> {
             this.setState({id: e.target.value})
             }}
             />
-             <button type="submit">Delete</button>
+             <button className='adminPageBtn' type="submit">Delete</button>
            </form>
-           {this.state.alert}
+           <p className='itemAdded'>{this.state.alert}</p>
            </div>
       </div>
     );

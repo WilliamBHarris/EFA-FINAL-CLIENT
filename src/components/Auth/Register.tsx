@@ -89,6 +89,7 @@ class Register extends React.Component<
         <div className="homeLogo2"></div>
         <div className='registerBox'>
           <div className='formTitle'>Sign Up</div>
+          <p className='formDescription'>Welcome to Graffi! Sign up to begin shopping today!</p>
           <form className="formBox" onSubmit={this.registerUser}>
             <div className='inputTitle'>First Name</div>
             <input

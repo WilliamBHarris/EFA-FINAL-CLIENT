@@ -79,8 +79,9 @@ class Login extends React.Component<{
         <div className="homeLogo2"></div>
         <div className='registerBox'>
           <div className='formTitle'>Login</div>
+          <p className='formDescription'>Welcome back! Please enter your email and password.</p>
           <form className="formBox" onSubmit={this.loginUser}>           
-            <div className='inputTitle'>Email</div>
+            <div className='inputTitle'>Email:</div>
             <input
             className='inputBox'
               type="email"
@@ -89,7 +90,7 @@ class Login extends React.Component<{
               onChange={this.handleChange}
               required
             />
-            <div className='inputTitle'>Password</div>
+            <div className='inputTitle'>Password:</div>
             <input
               className='inputBox'
               type="password"
@@ -101,6 +102,15 @@ class Login extends React.Component<{
             <br/>
             <button className="formBtn" type="submit">Login</button>
           </form>
+          <p className="alreadyUser">
+              Haven't signed up yet? Sign up
+              <span className="link">
+                <Link className="aLink" to="/register">
+                  here
+                </Link>
+              </span>
+              !
+            </p>
         </div>
         {this.state.user !== "" ? <Navigate to="/" /> : null}
       </div>

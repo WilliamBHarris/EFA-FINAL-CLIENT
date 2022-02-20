@@ -35,6 +35,7 @@ export type TokenProp = {
   fetchProducts: any;
   userId: string;
   role: string;
+  name: any;
 };
 
 class SingleProduct extends React.Component<TokenProp, ProductState> {
@@ -73,7 +74,7 @@ class SingleProduct extends React.Component<TokenProp, ProductState> {
           image: res.image,
           prodDescription: res.description,
           reviews: [...res.reviews],
-          userName: "",
+          userName: `${res.user.firstName} ${res.user.lastName}`,
         });
       })
       .catch((error) => console.log(error));
@@ -123,6 +124,7 @@ class SingleProduct extends React.Component<TokenProp, ProductState> {
         this.setState({
           title: "",
           description: "",
+          userName: `${this.props.name}`
         });
       })
       .then(() => {
@@ -140,56 +142,65 @@ class SingleProduct extends React.Component<TokenProp, ProductState> {
 
   render(): React.ReactNode {
     return (
-      <div className='productMain'>
+      <div className="productMain">
         <div className="homeLogo"></div>
         <div className="homeLogo2"></div>
 
-        <div className='singleMain'>
-        
-        <form  onSubmit={this.addReview}>
-          <div className="singleItemBox">
-          <img className='cardImgSingle' src={this.state.image} alt={this.state.prodTitle} />
-          <p>{this.state.prodTitle}</p>
-          <p>{this.state.prodDescription}</p>
-          
-          <h3>Add a review:</h3>
-          <p>Title:</p>
-          <input
-            type="text"
-            name="title"
-            onChange={this.handleChange}
-            value={this.state.title}
-          />
-          <p>Description:</p>
-          <input
-            type="text"
-            name="description"
-            onChange={this.handleChange}
-            value={this.state.description}
-          />
-          <br />
-          <button type="submit">Submit</button></div>
-        </form>
-        
-        <div className="reviewContainer">
-          <h1>Reviews ({this.state.reviews.length})</h1>
-          <SingleReviews
-            setReviewId={this.props.setReviewId}
-            reviewId={this.props.reviewId}
-            userName={this.state.userName}
-            reviews={this.state.reviews}
-            handleClose={this.props.handleClose}
-            handleClickOpen={this.props.handleClickOpen}
-            setOpen={this.props.setOpen}
-            open={this.props.open}
-            setRevId={this.props.setRevId}
-            revId={this.props.revId}
-            fetchProducts={this.props.fetchProducts}
-            userId={this.props.userId}
-            role={this.props.role}
-          />
+        <div className="singleMain">
+          <div >
+          <form  onSubmit={this.addReview}>
+            <div className="singleItemBox">
+              <img
+                className="cardImgSingle"
+                src={this.state.image}
+                alt={this.state.prodTitle}
+              />
+              <div className='singleProdInfo'>
+              <h2>{this.state.prodTitle}</h2>
+              <p>{this.state.prodDescription}</p>
+</div>
+          <div className='singleFormBox'>
+              <h3>Add a review:</h3>
+              <p>Title:</p>
+              <input
+              className='inputBox'
+                type="text"
+                name="title"
+                onChange={this.handleChange}
+                value={this.state.title}
+              />
+              <p>Description:</p>
+              <input
+              className='inputBox'
+                type="text"
+                name="description"
+                onChange={this.handleChange}
+                value={this.state.description}
+              />
+              <br />
+              <button className='adminPageBtn' type="submit">Submit</button></div>
+            </div>
+          </form></div>
+          <div className="reviewContainer">
+            <h1 className="reviewMainTitle">Reviews ({this.state.reviews.length})</h1>
+            <SingleReviews
+              setReviewId={this.props.setReviewId}
+              reviewId={this.props.reviewId}
+              reviews={this.state.reviews}
+              handleClose={this.props.handleClose}
+              handleClickOpen={this.props.handleClickOpen}
+              setOpen={this.props.setOpen}
+              open={this.props.open}
+              setRevId={this.props.setRevId}
+              revId={this.props.revId}
+              fetchProducts={this.props.fetchProducts}
+              userId={this.props.userId}
+              role={this.props.role}
+              userName={this.state.userName}
+            />
+          </div>
         </div>
-      </div></div>
+      </div>
     );
   }
 }

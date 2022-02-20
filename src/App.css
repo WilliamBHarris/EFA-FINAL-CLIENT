@@ -94,20 +94,8 @@ font-family: 'Wallpoet', cursive; */
 
 /* NAV END */
 
-.reviewMain {
-  border: 1px solid black;
-  width: 50%;
-  margin: 20px;
-  padding: 20px;
-}
 
-
-
-.hideRole {
-  display: none;
-}
-
-/* CART */
+/* CART NAV */
 
 .cartIcon {
   position: absolute;
@@ -117,6 +105,10 @@ font-family: 'Wallpoet', cursive; */
   height: 70px;
   width: 70px;
   cursor: grab;
+}
+
+.badgeColor {
+  color: white;
 }
 
 /* HOME */
@@ -343,13 +335,65 @@ font-family: 'Wallpoet', cursive; */
 /* ITEM UPDATE */
 
 .updateProdMain{
- background:rgba(0, 0, 0, 0.3);
+ background:rgba(0, 0, 0, 1);
+ color: white;
  font-family: 'Marvel', sans-serif;
+ text-align: center;
+ width: 100%;
+ 
+}
+.updateContentBox {
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  justify-content: space-around;
+}
+
+.updateProdBtn {
+  display: flex !important;
+  justify-content: space-between !important;
+  background: black;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.updateProdContent {
+  background: white;
+  margin: 10px;
+  height: 30px;
+}
+
+.updateMidBox {
+  background: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.updateLabel {
+  color: white;
+}
+
+.updateMainTitle {
+  color: white !important;
+  text-align: center;
+}
+
+.updateBtn {
+  color: white !important;
+  background: red !important;
+  height: 100% !important;
+  border-radius: 0% !important;
+  margin: 0 !important;
 }
 
 /* ITEM UPDATE END */
 
 /* REGISTER */
+.hideRole {
+  display: none;
+}
 
 .mainRegister {
   background-image: url("./assets/GraffiTEESbg.png");
@@ -363,12 +407,12 @@ font-family: 'Wallpoet', cursive; */
 }
 
 .registerBox {
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.8  );
   border: 1px solid red;
   width: 50%;
   height: 600px;
   margin: auto;
-  margin-top: 11%;
+  margin-top: 15%;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
@@ -379,23 +423,23 @@ font-family: 'Wallpoet', cursive; */
   color: white;
   font-family: 'Marvel', sans-serif;
   font-size: 25px;
+  margin-top: 10px;
 }
 .inputBox {
   background: rgb(255, 0 , 0, .3);
   border: 1px solid red;
-  width: 50%;
+  width: 100%;
   height: 30px;
   color: white;
 }
 
 .formBox {
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-  flex-direction: column;
-  height: 70%;
-  align-items: center;
-  position: relative;
+  width: 40%;
+  text-align: left;
+display: flex;
+flex-direction: column;
+margin: auto;
+align-items: flex-start;
 }
 
 .formTitle {
@@ -412,11 +456,14 @@ font-family: 'Wallpoet', cursive; */
 
 .formBtn {
   border: none;
-  padding: 20px 40px;
+  padding: 20px 150px;
   font-family: 'Marvel', sans-serif;
   font-size: 20px;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(255, 0, 0, 0.7);
   color: white;
+  width: 100%;
+ margin-bottom: -50px;
+  
 }
 
 .alreadyUser {
@@ -438,19 +485,33 @@ font-family: 'Wallpoet', cursive; */
   color: red;
   padding-left: 8px;
 }
+.formDescription {
+  font-family: 'Marvel', sans-serif;
+  color: white;
+  font-size: 20px;
+  text-align: center;
+  margin-top: 60px;
+  margin-bottom: -80px;
+}
+
+
 
 /* END REGISTER */
 
 /* SINGLE ITEM */
 
 .singleItemBox {
-  border: 1px solid white;
-  margin-top: 150px;
-  margin-left: -150px;
+  border: 1px solid red;
+  margin-top: 130px;
+  margin-left: -0px;
+  padding: 20px;
+  height: 730px;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
 }
 
 .cardImgSingle {
-  height: 400px;
+  height: 375px;
   width: 400px;
   text-align: center;
   margin-top: 10px;
@@ -463,14 +524,219 @@ font-family: 'Wallpoet', cursive; */
   justify-content: space-around;
 }
 
+.singleFormBox {
+  padding: 10px;
+  font-family: 'Marvel', sans-serif;
+  font-size: 20px;
+  margin-bottom: -80px;  
+}
+
+.singleProdInfo {
+  text-align: center;
+  border: 1px solid red;
+  padding: 5px;
+  font-family: 'Marvel', sans-serif;
+  font-size: 20px;
+}
+
 /* REVIEWS */
 
 .reviewContainer {
-  border: 1px solid white;
+  
   width: 50%;
-  height: 100%;
+  height: 75%;
+  margin-top: 120px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  text-align:justify;
 }
 
 .reviewForm {
   border: 1px solid white;
+}
+
+.reviewMain {
+  border: 1px solid red;
+  width: 100%;
+  height: 150px;
+  margin: auto;
+  margin-top: 10px;
+  background:rgba(0, 0, 0, 0.8);
+  color: white;
+  position: relative;
+}
+
+.reviewMainTitle {
+  text-align: center;
+  color: white;
+  background: rgba(0, 0, 0, 0.8);
+  width: 30%;
+  margin: auto;
+  margin-top: 10px;
+  padding: 5px 10px;
+  font-family: 'Marvel', sans-serif;
+  letter-spacing: 4px;
+}
+
+.reviewBtn {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  bottom: 0;
+}
+
+.dateTime {
+  font-size: 12px;
+}
+
+.noReviews {
+  color: white;
+  font-size: 30px;
+  font-family: 'Marvel', sans-serif;
+  border: 1px solid red;
+  text-align: center;
+  margin-top: 60px;
+  background:rgba(0, 0, 0, 0.8);
+  padding: 30px;
+}
+
+/* REVIEW END */
+
+/* CART */
+
+.cartMain{
+  background: black;
+  border: 1px solid red;
+}
+
+.cartImg {
+  height: 150px;
+  width: 150px;
+}
+
+.cartItemGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  row-gap: 5px;
+  column-gap: 5px;
+  margin-bottom: 20px;
+  
+}
+
+.cartItemInfo {
+  text-align: center;
+  color: white;
+}
+
+.cartButtons {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.cartItemAmount {
+  border: 1px solid red;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+}
+.btn {
+  padding: 0 10px;
+  background: red;
+  color: white;
+}
+
+.cartTotal {
+  color: white;
+  text-align: center;
+}
+
+.checkoutBtn {
+  border: none;
+  background: red;
+  color: white;
+  font-family: 'Marvel', sans-serif;
+  padding: 10px 20px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.cartTitle {
+  color: white;
+  font-family: 'Marvel', sans-serif;
+  text-align: center;
+  font-size: 30px;
+  padding-top: 15px;
+  margin-bottom: 20px;
+}
+
+.noItemCart {
+  color: white;
+  font-family: 'Marvel', sans-serif;
+  text-align: center;
+  font-size: 25px;
+  padding-bottom: 20px;
+}
+
+/* CART END */
+
+/* ADMIN */
+
+.adminBox {
+  display: flex;
+  height: 100vh;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.createMain {
+  border: 1px solid red;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 20px;
+  height: 500px;
+  width: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Marvel', sans-serif;
+  font-size: 20px;
+}
+
+.adminFormTitle {
+  text-align: center;
+}
+.createBox {
+  width: 100%;
+}
+
+.adminTitle {
+  color: white;
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid red;
+  margin-bottom: 20px;
+  padding: 30px;
+  font-family: 'Marvel', sans-serif;
+  letter-spacing: 5px;
+}
+.adminPageBtn {
+background: red;
+width: 100%;
+margin-top: 20px;
+font-family: 'Marvel', sans-serif;
+  letter-spacing: 5px;
+  height: 40px;
+  font-size: 20px;
+}
+
+.itemAdded {
+  color: white;
+  margin-top: 5px;
+  text-align: center;
+}
+
+.deleteTitle {
+  margin-bottom: 50px;
 }

@@ -39,8 +39,8 @@ class SingleReviews extends React.Component<SingleReviewProps, ReviewState> {
     super(props);
     this.state = {
       theId: "",
-      title: '',
-      description: '',
+      title: "",
+      description: "",
       open: false,
       revId: "",
     };
@@ -75,8 +75,8 @@ class SingleReviews extends React.Component<SingleReviewProps, ReviewState> {
         console.log(res);
         this.props.setRevId("");
         this.setState({
-          description: '',
-          title: '',
+          description: "",
+          title: "",
         });
         this.props.setRevId("update");
         this.props.fetchProducts();
@@ -105,31 +105,44 @@ class SingleReviews extends React.Component<SingleReviewProps, ReviewState> {
       return (
         <div className="reviewMain" key={reviews.id}>
           <div key={reviews.productId}>
-            <h2>{this.props.userName}</h2>
-            <h5>
-              {moment.parseZone(reviews.updatedAt).format("MMMM Do YYYY")}
-            </h5>
+            <h2>
+              {this.props.userName}
+              <span className="dateTime">
+                - {moment.parseZone(reviews.updatedAt).format("MMMM Do YYYY")}
+              </span>
+            </h2>
             <h3>{reviews.title}</h3>
             <p>{reviews.description}</p>
           </div>
           {reviews.userId === this.props.userId ||
           this.props.role === "admin" ? (
             <>
-              <button
-                onClick={() => {
-                  this.props.setRevId("delete");
-                  this.props.setReviewId(reviews.id);
-                  console.log(reviews);
-                }}
-              >
-                Delete
-              </button>
+              <div className="reviewBtn">
+                <button
+                  className="addCartBtn"
+                  onClick={() => {
+                    this.props.setRevId("delete");
+                    this.props.setReviewId(reviews.id);
+                    console.log(reviews);
+                  }}
+                >
+                  Delete
+                </button>
 
-              <Button
-                onClick={() => this.setState({ open: true, revId: reviews.id, title: reviews.title, description: reviews.description })}
-              >
-                Edit
-              </Button>
+                <button
+                  className="addCartBtn"
+                  onClick={() =>
+                    this.setState({
+                      open: true,
+                      revId: reviews.id,
+                      title: reviews.title,
+                      description: reviews.description,
+                    })
+                  }
+                >
+                  Edit
+                </button>
+              </div>
               <Dialog open={this.state.open} onClose={this.props.handleClose}>
                 <DialogTitle>Update Review</DialogTitle>
                 <DialogContent>
@@ -178,9 +191,11 @@ class SingleReviews extends React.Component<SingleReviewProps, ReviewState> {
   render(): React.ReactNode {
     return (
       <div>
-        {this.props.reviews.length !== 0
-          ? this.mapReviews()
-          : "No reviews for this item yet!"}
+        {this.props.reviews.length !== 0 ? (
+          this.mapReviews()
+        ) : (
+          <p className="noReviews">Be the first to review this item!</p>
+        )}
       </div>
     );
   }
