@@ -2,7 +2,6 @@ import React from "react";
 import "../../App.css";
 import moment from "moment";
 import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
@@ -12,7 +11,7 @@ import dbCall from "../../helpers/environment";
 
 export type SingleReviewProps = {
   reviews: any;
-  userName: any;
+  name: any;
   reviewId: any;
   setReviewId: any;
   handleClose: () => void;
@@ -105,14 +104,15 @@ class SingleReviews extends React.Component<SingleReviewProps, ReviewState> {
       return (
         <div className="reviewMain" key={reviews.id}>
           <div key={reviews.productId}>
-            <h2>
-              {this.props.userName}
+            <h2 className="reviewBoxTitle">
+              
+              {reviews.userName}
               <span className="dateTime">
                 - {moment.parseZone(reviews.updatedAt).format("MMMM Do YYYY")}
               </span>
             </h2>
-            <h3>{reviews.title}</h3>
-            <p>{reviews.description}</p>
+            <h3 className="reviewSingleTitle">{reviews.title}</h3>
+            <p className="reviewSingleDescription">{reviews.description}</p>
           </div>
           {reviews.userId === this.props.userId ||
           this.props.role === "admin" ? (
@@ -144,39 +144,37 @@ class SingleReviews extends React.Component<SingleReviewProps, ReviewState> {
                 </button>
               </div>
               <Dialog open={this.state.open} onClose={this.props.handleClose}>
-                <DialogTitle>Update Review</DialogTitle>
-                <DialogContent>
-                  <DialogContentText>
+                <DialogTitle className="updateProdMain">
+                  Update Review
+                </DialogTitle>
+                <DialogContent className="updateMidBox2">
+                  <DialogContentText className="updateMainTitle">
                     Edit the contents of the review and update.
                   </DialogContentText>
-                  <TextField
-                    autoFocus
-                    margin="dense"
-                    id="name"
-                    label="Title:"
+                  <p className='updateLabel'>Title:</p>
+                  <input
+                    className="updateProdContent"
                     type="text"
-                    fullWidth
-                    variant="standard"
                     value={this.state.title}
                     onChange={(e) => this.setState({ title: e.target.value })}
                   />
-                  <TextField
-                    autoFocus
-                    margin="dense"
-                    id="name"
-                    label="Description:"
+                  <p className='updateLabel'>Description:</p>
+                  <input
+                    className="updateProdContent"
                     type="text"
-                    fullWidth
-                    variant="standard"
                     value={this.state.description}
                     onChange={(e) =>
                       this.setState({ description: e.target.value })
                     }
                   />
                 </DialogContent>
-                <DialogActions>
-                  <Button onClick={this.cancelClear}>Cancel</Button>
-                  <Button onClick={this.handleUpdate}>Update</Button>
+                <DialogActions className="updateProdBtn">
+                  <Button className="updateBtn" onClick={this.cancelClear}>
+                    Cancel
+                  </Button>
+                  <Button className="updateBtn" onClick={this.handleUpdate}>
+                    Update
+                  </Button>
                 </DialogActions>
               </Dialog>
             </>

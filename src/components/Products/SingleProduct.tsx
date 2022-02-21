@@ -13,11 +13,12 @@ export type ProductState = {
   amount: number;
   category: string;
   id: string;
-  userName: string;
+  // userName: string;
   reviews: any;
   prodDescription: string;
   prodTitle: string;
   reviewId: string;
+  userName: any;
 };
 
 export type TokenProp = {
@@ -74,7 +75,7 @@ class SingleProduct extends React.Component<TokenProp, ProductState> {
           image: res.image,
           prodDescription: res.description,
           reviews: [...res.reviews],
-          userName: `${res.user.firstName} ${res.user.lastName}`,
+        
         });
       })
       .catch((error) => console.log(error));
@@ -84,13 +85,14 @@ class SingleProduct extends React.Component<TokenProp, ProductState> {
     this.fetchProducts();
   }
 
+
   componentDidUpdate() {
     if (
       this.props.revId === "add" ||
       this.props.revId === "update" ||
       this.props.revId === "delete" ||
       this.props.revId === "delete-p" ||
-      this.props.revId === "update-p"
+      this.props.revId === "update-p" 
     )
       this.fetchProducts();
   }
@@ -108,6 +110,7 @@ class SingleProduct extends React.Component<TokenProp, ProductState> {
         review: {
           title: this.state.title,
           description: this.state.description,
+          userName: this.props.name
         },
       }),
       headers: {
@@ -118,13 +121,14 @@ class SingleProduct extends React.Component<TokenProp, ProductState> {
       .then((res) => {
         console.log(res);
         this.props.setRevId("add");
+         
       })
       .then(() => {
         this.props.setRevId("");
-        this.setState({
+       this.setState({
           title: "",
           description: "",
-          userName: `${this.props.name}`
+          userName: ''
         });
       })
       .then(() => {
@@ -143,9 +147,9 @@ class SingleProduct extends React.Component<TokenProp, ProductState> {
   render(): React.ReactNode {
     return (
       <div className="productMain">
-        <div className="homeLogo"></div>
+        <Link to="/"><div className="homeLogo"></div>
         <div className="homeLogo2"></div>
-
+</Link>
         <div className="singleMain">
           <div >
           <form  onSubmit={this.addReview}>
@@ -196,7 +200,7 @@ class SingleProduct extends React.Component<TokenProp, ProductState> {
               fetchProducts={this.props.fetchProducts}
               userId={this.props.userId}
               role={this.props.role}
-              userName={this.state.userName}
+              name={this.state.userName}
             />
           </div>
         </div>

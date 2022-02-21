@@ -13,6 +13,8 @@ import Products from "./components/Products/Products";
 import SingleProduct from "./components/Products/SingleProduct";
 import dbCall from "./helpers/environment";
 import AdminMain from "./components/Admin/AdminMain";
+import About from "./components/Navbar/About";
+import Contact from "./components/Navbar/Contact";
 
 export type CartItemType = {
   id: number;
@@ -231,6 +233,8 @@ const App = () => {
 
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="/admin" element={<AdminMain role={role} name={name} />} />
           <Route
             path="/products"

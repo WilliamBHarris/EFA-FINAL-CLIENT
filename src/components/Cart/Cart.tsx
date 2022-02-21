@@ -27,9 +27,9 @@ class Cart extends React.Component<Props> {
           />
         ))}</div>
         <div className="cartTotal">
-          {this.props.cartItems.length === 0 ? <p className='noItemCart'>Add an item to your cart</p> : <h2>Total: ${calculateTotal(this.props.cartItems).toFixed(2)}</h2> }
+          {this.props.cartItems.length === 0 ? <p className='noItemCart'>No items in your cart!</p> : <h2>Total: ${calculateTotal(this.props.cartItems).toFixed(2)}</h2> }
         
-        {this.props.sessionToken === '' ? <p>"Login to checkout" </p>: <button className='checkoutBtn'>Checkout</button>}
+        {this.props.sessionToken === '' ? <p className='loginCheckout'>Login or Sign up to checkout</p>: <button className='checkoutBtn'>Checkout</button>}
       </div>
       </div>
     );

@@ -50,7 +50,7 @@ class Navbar extends React.Component<
           {this.props.sessionToken !== "" ? (
             <div className='navBox'>              
               <Link className="navLink"  to="/products">Shop</Link>
-              <Link className="navLink"  to="/products">About</Link>
+              <Link className="navLink"  to="/about">About</Link>
               <Link className="navLink"  to="/contact">Contact</Link>
               {this.props.role === "admin" ? (
                 <Link className="navLink"  to="/admin">Admin</Link>

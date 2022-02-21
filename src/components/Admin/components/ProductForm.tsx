@@ -8,8 +8,8 @@ export type ProductFormProps = {
 export type ProductFormState = {
     title: string;
     description: string;
-    amount: number;
-    price: number;
+    amount: number | string;
+    price: number | string;
     category: string;
     image: string;
     alert: string;
@@ -22,8 +22,8 @@ class ProductForm extends React.Component <{}, ProductFormState> {
     this.state = {
       title: '',
       description: '',
-      amount: 0,
-      price: 0,
+      amount: '',
+      price: '',
       category: '',
       image: '',
       alert: '',

@@ -202,7 +202,7 @@ font-family: 'Wallpoet', cursive; */
     height: 200px;
     width: 200px;
     text-align: center;
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
 .itemImgCenter {
@@ -229,7 +229,7 @@ font-family: 'Wallpoet', cursive; */
 .itemCard {
   position: relative;
   border: 1px solid red;
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.8);
   height: 400px;
 }
 
@@ -337,10 +337,10 @@ font-family: 'Wallpoet', cursive; */
 .updateProdMain{
  background:rgba(0, 0, 0, 1);
  color: white;
- font-family: 'Marvel', sans-serif;
+ font-family: 'Marvel', sans-serif !important;
  text-align: center;
  width: 100%;
- 
+ font-size: 30px !important;
 }
 .updateContentBox {
   height: 400px;
@@ -371,13 +371,27 @@ font-family: 'Wallpoet', cursive; */
   justify-content: space-around;
 }
 
+.updateMidBox2 {
+  background: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 300px;
+  width: 600px;
+}
+
 .updateLabel {
   color: white;
+  font-family: 'Marvel', sans-serif;
+  font-size: 18px;
+  letter-spacing: 3px;
 }
 
 .updateMainTitle {
   color: white !important;
   text-align: center;
+  font-family: 'Marvel', sans-serif !important;
+  font-size: 19px !important;
 }
 
 .updateBtn {
@@ -533,8 +547,9 @@ align-items: flex-start;
 
 .singleProdInfo {
   text-align: center;
-  border: 1px solid red;
+  border-bottom: 1px solid red;
   padding: 5px;
+  padding-bottom: 13px;
   font-family: 'Marvel', sans-serif;
   font-size: 20px;
 }
@@ -551,19 +566,35 @@ align-items: flex-start;
   text-align:justify;
 }
 
-.reviewForm {
-  border: 1px solid white;
+.reviewBoxTitle {
+  padding: 10px;
+  border-bottom: 1px solid rgba(255, 0, 0, 0.5);
+  letter-spacing: 3px;
+  margin-bottom: 10px;
+}
+
+.reviewSingleTitle {
+  font-size: 23px;
+  padding-left: 10px;
+  padding-bottom: 10px;
+}
+
+.reviewSingleDescription {
+  padding-left: 10px;
+  font-size: 20px;
+  margin-bottom: 60px;
 }
 
 .reviewMain {
   border: 1px solid red;
   width: 100%;
-  height: 150px;
+  height: 100%;
   margin: auto;
   margin-top: 10px;
   background:rgba(0, 0, 0, 0.8);
   color: white;
   position: relative;
+  font-family: 'Marvel', sans-serif;
 }
 
 .reviewMainTitle {
@@ -587,7 +618,9 @@ align-items: flex-start;
 }
 
 .dateTime {
-  font-size: 12px;
+  font-size: 14px;
+  padding-left: 30px;
+
 }
 
 .noReviews {
@@ -633,6 +666,7 @@ align-items: flex-start;
   display: flex;
   justify-content: center;
   margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 .cartItemAmount {
@@ -679,6 +713,16 @@ align-items: flex-start;
   padding-bottom: 20px;
 }
 
+.loginCheckout {
+  font-family: 'Marvel', sans-serif;
+  letter-spacing: 5px;
+  border: 1px solid red;
+  width: 20%;
+  margin: auto;
+  margin-bottom: 20px;
+  font-size: 17px;
+  padding: 10px;
+}
 /* CART END */
 
 /* ADMIN */
@@ -739,4 +783,78 @@ font-family: 'Marvel', sans-serif;
 
 .deleteTitle {
   margin-bottom: 50px;
+}
+
+/* ADMIN END */
+
+
+/* ABOUT */
+
+.aboutBox {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.aboutMain {
+  border: 1px solid red;
+  color: white;
+  height: 600px;
+  width: 900px;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.aboutTitle {
+  text-align: center;
+  font-family: 'Marvel', sans-serif;
+  letter-spacing: 5px;
+  margin-top: 30px;
+}
+
+.aboutDescription {
+  width: 80%;
+  margin: auto;
+  font-size: 20px;
+  font-family: 'Marvel', sans-serif;
+  padding-top: 70px;
+  line-height: 25px;
+}
+
+/*  ABOUT END */
+
+/* CONTACT START */
+
+.contactFormMain {
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.contactFormBox {
+  display: flex;
+  flex-direction: column;
+  background:rgba(0, 0, 0, 0.8);
+  color: white;
+  border: 1px solid red;
+  height: 600px;
+  width: 900px;
+  padding: 20px;
+}
+
+.contactTitles {
+  margin-bottom: 10px;
+  margin-top: 10px;
+  font-family: 'Marvel', sans-serif;
+}
+
+.contactFormFields {
+  margin-top: 20px;
+}
+
+.inputBox2 {
+  height: 200px;
+  width: 100%;
+  background: rgba(255, 0, 0, 0.3);
 }

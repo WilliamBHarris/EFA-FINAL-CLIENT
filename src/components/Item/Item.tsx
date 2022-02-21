@@ -159,37 +159,42 @@ class Item extends React.Component<ItemProps, ItemState> {
 
           <Dialog open={this.state.open} onClose={this.props.handleClose}>
             <DialogTitle className="updateProdMain">Update Product</DialogTitle>
-            <DialogContent className='updateMidBox'>
+            <DialogContent className="updateMidBox">
               <DialogContentText className="updateMainTitle">
                 Edit the contents of the product and update.
               </DialogContentText>
-              <div className='updateContentBox'>
-                <p className='updateLabel'>Title:</p>
-              <input
-                className="updateProdContent"
-                type="text"
-                value={this.state.title}
-                onChange={(e) => this.setState({ title: e.target.value })}
-              /><p className='updateLabel'>Description:</p>
-              <input
-                className="updateProdContent"
-                type="text"
-                value={this.state.description}
-                onChange={(e) => this.setState({ description: e.target.value })}
-              /><p className='updateLabel'>Price:</p>
-              <input
-                className="updateProdContent"
-                autoFocus
-                type="number"
-                value={this.state.price}
-                onChange={(e) => this.setState({ price: e.target.value })}
-              /><p className='updateLabel'>Image:</p>
-              <input
-                className="updateProdContent"
-                type="text"
-                value={this.state.image}
-                onChange={(e) => this.setState({ image: e.target.value })}
-              />
+              <div className="updateContentBox">
+                <p className="updateLabel">Title:</p>
+                <input
+                  className="updateProdContent"
+                  type="text"
+                  value={this.state.title}
+                  onChange={(e) => this.setState({ title: e.target.value })}
+                />
+                <p className="updateLabel">Description:</p>
+                <input
+                  className="updateProdContent"
+                  type="text"
+                  value={this.state.description}
+                  onChange={(e) =>
+                    this.setState({ description: e.target.value })
+                  }
+                />
+                <p className="updateLabel">Price:</p>
+                <input
+                  className="updateProdContent"
+                  autoFocus
+                  type="number"
+                  value={this.state.price}
+                  onChange={(e) => this.setState({ price: e.target.value })}
+                />
+                <p className="updateLabel">Image:</p>
+                <input
+                  className="updateProdContent"
+                  type="text"
+                  value={this.state.image}
+                  onChange={(e) => this.setState({ image: e.target.value })}
+                />
               </div>
             </DialogContent>
             <DialogActions className="updateProdBtn">
