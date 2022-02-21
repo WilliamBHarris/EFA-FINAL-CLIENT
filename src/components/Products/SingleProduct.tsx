@@ -92,7 +92,8 @@ class SingleProduct extends React.Component<TokenProp, ProductState> {
       this.props.revId === "update" ||
       this.props.revId === "delete" ||
       this.props.revId === "delete-p" ||
-      this.props.revId === "update-p" 
+      this.props.revId === "update-p" ||
+      this.props.revId === "add-p" 
     )
       this.fetchProducts();
   }
@@ -120,7 +121,7 @@ class SingleProduct extends React.Component<TokenProp, ProductState> {
     })
       .then((res) => {
         console.log(res);
-        this.props.setRevId("add");
+        this.props.setRevId("add-p");
          
       })
       .then(() => {
