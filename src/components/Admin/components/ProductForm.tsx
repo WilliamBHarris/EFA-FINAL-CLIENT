@@ -1,8 +1,9 @@
 import React from "react";
 import dbCall from "../../../helpers/environment";
 
+
 export type ProductFormProps = {
- 
+  setRevId: any;
 };
 
 export type ProductFormState = {
@@ -15,7 +16,7 @@ export type ProductFormState = {
     alert: string;
 }
 
-class ProductForm extends React.Component <{}, ProductFormState> {
+class ProductForm extends React.Component <ProductFormProps, ProductFormState> {
   constructor(props: any) {
     super(props);
 
@@ -63,6 +64,7 @@ class ProductForm extends React.Component <{}, ProductFormState> {
       .then((res) => res.json())
       .then((res) => {
         console.log(res);
+        this.props.setRevId("add-p");
         this.setState({
             title: '',
             description: '',
@@ -72,6 +74,9 @@ class ProductForm extends React.Component <{}, ProductFormState> {
             image: '',
             alert: 'added'
         })
+      })
+      .then(() => {
+        this.props.setRevId("");
       })
       .catch((error) => console.log(error));
   };

@@ -235,7 +235,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/admin" element={<AdminMain role={role} name={name} />} />
+          <Route path="/admin" element={<AdminMain setRevId={setRevId} role={role} name={name} />} />
           <Route
             path="/products"
             element={

@@ -121,7 +121,7 @@ class SingleProduct extends React.Component<TokenProp, ProductState> {
     })
       .then((res) => {
         console.log(res);
-        this.props.setRevId("add-p");
+        this.props.setRevId("add");
          
       })
       .then(() => {

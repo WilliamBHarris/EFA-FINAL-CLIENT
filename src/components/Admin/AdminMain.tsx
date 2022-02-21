@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 export type AdminMainProps = {
   role: string;
   name: string;
+  setRevId: any;
 };
 
 class AdminMain extends React.Component<AdminMainProps> {
@@ -25,7 +26,7 @@ class AdminMain extends React.Component<AdminMainProps> {
             </Link>
             <div className="adminBox">
               <h1 className="adminTitle">Welcome {this.props.name}</h1>
-              <ProductForm />
+              <ProductForm setRevId={this.props.setRevId} />
               <DeleteUser />
             </div>{" "}
           </div>
