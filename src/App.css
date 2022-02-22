@@ -20,12 +20,12 @@ font-family: 'Wallpoet', cursive; */
   background: transparent;
 }
 
-.logoOverlay {
+/* .logoOverlay {
   background: rgba(0, 0, 0, 0.5);
   height: 70px;
   width: 30%;
   position: absolute;
-}
+} */
 
 .navLogo {
   font-family: "La Belle Aurore", cursive;
@@ -36,6 +36,7 @@ font-family: 'Wallpoet', cursive; */
   letter-spacing: 10px;
   margin-left: 50px;
   font-size: 90px;
+  z-index: 1;
 }
 
 .navLink {
@@ -46,6 +47,7 @@ font-family: 'Wallpoet', cursive; */
   letter-spacing: 4px;
   cursor: grab;
   margin: 0 30px 0 30px;
+  z-index: 1;
 }
 
 .navLink:hover {
@@ -60,6 +62,7 @@ font-family: 'Wallpoet', cursive; */
   height: 70px;
   align-items: center;
   position: absolute;
+  z-index: 1;
 }
 
 .navButton {
@@ -219,12 +222,14 @@ font-family: 'Wallpoet', cursive; */
     width: 100%;
     background-attachment: fixed;
     overflow-x: hidden;
+
 }
 
 .mainGrid {
   width: 90%;
   margin: auto;
   margin-top: 200px;
+  z-index: 0;
 }
 .itemCard {
   position: relative;
@@ -239,7 +244,7 @@ font-family: 'Wallpoet', cursive; */
   background-repeat: no-repeat;
   width: 400px;
   position: absolute;
-  top: 10%;
+  top: 1%;
   margin-left: 50px;
 }
 .prodLogo2 {
@@ -250,7 +255,7 @@ font-family: 'Wallpoet', cursive; */
   background-position: center;
   background-size: contain;
   position: absolute;
-  top: 10%;
+  top: 1%;
   opacity: 0.2;
   margin-left: 320px;
   animation-name: canLogo;
@@ -858,3 +863,12 @@ font-family: 'Marvel', sans-serif;
   width: 100%;
   background: rgba(255, 0, 0, 0.3);
 }
+
+.formMessage {
+  color: white;
+  font-family: 'Marvel', sans-serif;
+  width: 100%;
+  text-align: right;
+  margin-bottom: -25px;
+}
+

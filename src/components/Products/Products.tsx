@@ -18,10 +18,10 @@ class Products extends React.Component< ProductProps> {
   render(): React.ReactNode {    
     return (
       <div className="productMain">
-        <div className="logoOverlay">
+        
         <Link to="/"><div className="prodLogo"></div></Link>
         <div className="prodLogo2"></div>
-        </div>
+       
         <div className="mainGrid">
       <Grid container spacing={3}>
         {this.props.item?.map((item) => (
