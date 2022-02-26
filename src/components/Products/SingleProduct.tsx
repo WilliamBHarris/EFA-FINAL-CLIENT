@@ -26,7 +26,7 @@ export type TokenProp = {
   setSessionToken: MainProps["setSessionToken"];
   setReviewId: any;
   reviewId: string;
-  setReviewTotal: any;
+  // setReviewTotal: any;
   handleClose: () => void;
   handleClickOpen: () => void;
   setOpen: any;

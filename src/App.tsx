@@ -15,6 +15,7 @@ import dbCall from "./helpers/environment";
 import AdminMain from "./components/Admin/AdminMain";
 import About from "./components/Navbar/About";
 import Contact from "./components/Navbar/Contact";
+import UserProfile from "./components/User/UserProfile";
 
 export type CartItemType = {
   id: number;
@@ -47,7 +48,7 @@ const App = () => {
   const [item, setItem] = useState([] as CartItemType[]);
   const [cartItems, setCartItems] = useState([] as CartItemType[]);
   const [reviewId, setReviewId] = useState("");
-  const [reviewTotal, setReviewTotal] = useState(0);
+  // const [reviewTotal, setReviewTotal] = useState(0);
   const [open, setOpen] = useState(false);
   const [revId, setRevId] = useState("");
   const [user, setUser] = useState({
@@ -60,6 +61,7 @@ const App = () => {
   const [userId, setUserId] = useState("");
   const [role, setRole] = useState("");
   const [name, setName] = useState("");
+  const [userUpdate, setUserUpdate] = useState('')
 
   const fetchProducts = async (): Promise<void> => {
     await fetch(`${dbCall}/products/`, {
@@ -84,7 +86,7 @@ const App = () => {
       setSessionToken(localStorage.getItem("Authorization"));
 
     const fetchUser = async (): Promise<void> => {
-      if (sessionToken !== "" && user.userId === "") {
+      if ((sessionToken !== "" && user.userId === "") || userUpdate === 'update') {
         await fetch(`${dbCall}/user/setUser`, {
           method: "POST",
           headers: {
@@ -100,6 +102,7 @@ const App = () => {
             setUserId(res.userId);
             setRole(res.role);
             setName(`${res.firstName} ${res.lastName}`);
+            setUserUpdate('')
             console.log(res);
           })
           .then(() => user)
@@ -115,7 +118,7 @@ const App = () => {
       }
     };
     fetchUser();
-  }, [user, sessionToken]);
+  }, [user, sessionToken, userUpdate]);
 
   useEffect(() => {
     fetchProducts();
@@ -235,6 +238,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/userProfile" element={<UserProfile setUserUpdate={setUserUpdate}  user={user} />} />
           <Route path="/admin" element={<AdminMain setRevId={setRevId} role={role} name={name} />} />
           <Route
             path="/products"
@@ -275,7 +279,7 @@ const App = () => {
             element={
               <SingleProduct
                 fetchProducts={fetchProducts}
-                setReviewTotal={setReviewTotal}
+                // setReviewTotal={setReviewTotal}
                 reviewId={reviewId}
                 setReviewId={setReviewId}
                 sessionToken={sessionToken}

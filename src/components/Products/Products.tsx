@@ -23,12 +23,20 @@ class Products extends React.Component< ProductProps> {
         <div className="prodLogo2"></div>
        
         <div className="mainGrid">
+          <div className="gridTopper">Filter:
+          <button className='filterBtn'>All</button>
+          <button className='filterBtn'>Tops</button>
+          <button className='filterBtn'>Bottoms</button>
+          <button className='filterBtn'>Footwear</button>
+          <p>Search:</p>
+          <input className='searchInput' />
+          </div>
       <Grid container spacing={3}>
-        {this.props.item?.map((item) => (
-          <Grid item key={item.id} xs={12} sm={4}>
+        {this.props.item.length !== 0 ? this.props.item.map((item) => (
+          <Grid item key={item.id} xs={12} sm={3}>
             <Item role={this.props.role} handleClose={this.props.handleClose} setRevId={this.props.setRevId} fetchProducts={this.props.fetchProducts} handleAddToCart={this.props.handleAddToCart} item={item} />
           </Grid>
-        ))}
+        )) : <h1 className="noProductMessage">No products to display... Try again later.</h1>}
       </Grid>
       </div>
       </div>

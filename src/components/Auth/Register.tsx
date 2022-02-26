@@ -161,7 +161,7 @@ class Register extends React.Component<
               !
             </p>
         </div>
-        {this.state.user !== "" ? <Navigate to="/" /> : null}
+        {this.state.user !== "" ? <Navigate to="/products" /> : null}
       </div>
     );
   }

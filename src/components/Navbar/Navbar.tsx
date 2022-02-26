@@ -52,6 +52,7 @@ class Navbar extends React.Component<
               <Link className="navLink"  to="/products">Shop</Link>
               <Link className="navLink"  to="/about">About</Link>
               <Link className="navLink"  to="/contact">Contact</Link>
+              <Link className="navLink"  to="/userProfile">User</Link>
               {this.props.role === "admin" ? (
                 <Link className="navLink"  to="/admin">Admin</Link>
               ) : null}
